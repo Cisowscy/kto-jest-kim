@@ -833,9 +833,9 @@ dependencies = [
 
 [[package]]
 name = "egui-knex"
-version = "0.1.0-dev.6"
+version = "0.1.0-dev.7"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "ca964f38da1dcda70d8436d96032238f2f2a5441962d6d119ba38adb49c12908"
+checksum = "f8ee9b6914fed1b30a1160759ea22882755532a3c1830f77f9e167366f8b0202"
 dependencies = [
  "eframe",
  "wasm-bindgen",
@@ -1688,9 +1688,12 @@ checksum = "e2db585e1d738fc771bf08a151420d3ed193d9d895a36df7f6f8a9456b911ddc"
 
 [[package]]
 name = "kto-jest-kim"
-version = "0.1.0"
+version = "0.1.0-dev.1"
 dependencies = [
  "egui-knex",
+ "wasm-bindgen",
+ "wasm-bindgen-futures",
+ "web-sys",
 ]
 
 [[package]]
@@ -4197,6 +4200,10 @@ name = "xml-rs"
 version = "0.8.29"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "e450f9b2ed1dff33c94c12589a87338689467b9c4f5d8a5710bd09a847d2c8a7"
+
+[[package]]
+name = "xtask"
+version = "0.1.1"
 
 [[package]]
 name = "yeslogic-fontconfig-sys"
