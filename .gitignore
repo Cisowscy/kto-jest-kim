@@ -40,4 +40,5 @@ rustc-ice-*.txt
 /.cargo/.x-do-history.txt
 /Claude outputs/
 /.claude/
+/claude/
 .claude/settings.local.json

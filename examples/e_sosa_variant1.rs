@@ -1,7 +1,7 @@
 // examples/e_sosa_new.rs
 
 use comfy_table::{Table, presets::UTF8_FULL};
-use kim::feature::id_sosa::{LineCode, PersonEntryFrom};
+use kim::feature::id_sosa::{LineCode, PersonEntryFrom, RadixFormat};
 
 // ======example usage =====
 fn main() {
