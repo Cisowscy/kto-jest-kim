@@ -1,7 +1,8 @@
 use egui_knex::{
 	egui::{Button, Color32, DragValue, Id, Label, Rect, ScrollArea, TextEdit, TextStyle, Ui, UiBuilder},
 	element::{Vas, VasDispositio, VasFovea, VasRedundantia},
-	pos2, vec2,
+	pos2,
+	vec2,
 };
 
 type Pozycja = (String, f64);

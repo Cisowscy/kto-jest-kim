@@ -49,6 +49,7 @@ web-sys = { version = "0.3.107", features = [
 
 
 [dependencies]
+comfy-table = "8.0.1"
 egui-knex = "0.1.0-dev.7"
 
 
