@@ -27,28 +27,24 @@ impl<'a> PersonEntryFrom<'a> {
 		match *self {
 			PersonEntryFrom::Given(sosa) if sosa > 0 => Some(PersonEntry::from_sosa(sosa)),
 			_ => None,
+			// PersonEntryFrom::Array(arr) => arr.iter().copied().find(|&s| s > 0).map(PersonEntry::from_sosa),
+			// PersonEntryFrom::Range(ref range) => range.clone().find(|&s| s > 0).map(PersonEntry::from_sosa),
 		}
 	}
 }
 
+//▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct PersonEntry {
 	pub sosa: Sosa,
-	pub generation: GenerationOfSosa,
-	pub min_max: GenerationLimitOfSosa,
 	pub index: GenerationIndex,
 	pub lines: LinesOfSosa,
 }
 
 impl PersonEntry {
 	pub fn from_sosa(sosa: RadixDec) -> Self {
-		Self {
-			sosa: Sosa::from(sosa),
-			generation: GenerationOfSosa::from(sosa),
-			min_max: GenerationLimitOfSosa::from(sosa),
-			index: GenerationIndex::from(sosa),
-			lines: LinesOfSosa::from(sosa),
-		}
+		Self { sosa: Sosa::from(sosa), index: GenerationIndex::from(sosa), lines: LinesOfSosa::from(sosa) }
 	}
 }
 
@@ -60,14 +56,24 @@ pub enum IndexingMode {
 	From1, // 1, 2, 3, 4...
 }
 
+/// Uniwersalny porządek normal/revers spięty z numerem pokolenia.
+/// Domyślnie G to DualRadix (dla GenerationIndex). Dla Sosa używamy G = DualRadixPair.
+#[derive(Debug, Clone, PartialEq, Eq)]
+pub struct IndexOrder<G = DualRadix> {
+	pub normal: DualRadix,
+	pub revers: DualRadix,
+	pub gennum: G,
+	pub gender: SosaSex,
+}
+
 //▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct Sosa {
-	pub ego: (DualRadix, DualRadix, SosaSex),
-	pub dad: (DualRadix, DualRadix, SosaSex),
-	pub mom: (DualRadix, DualRadix, SosaSex),
-	pub kid: (DualRadix, DualRadix, SosaSex),
+	pub ego: IndexOrder<DualRadixPair>,
+	pub dad: IndexOrder<DualRadixPair>,
+	pub mom: IndexOrder<DualRadixPair>,
+	pub kid: IndexOrder<DualRadixPair>,
 }
 
 impl From<RadixDec> for Sosa {
@@ -77,11 +83,15 @@ impl From<RadixDec> for Sosa {
 		let mom_sex = SosaSex::from(sosa * 2 + 1);
 		let kid_sex = SosaSex::from(sosa / 2);
 
-		let limit = GenerationLimitOfSosa::from(sosa);
+		// let limit = GenerationLimitOfSosa::from(sosa);
 		let order = GenerationIndex::from(sosa);
 
+		let gen0 = order.from0.gennum.dec;
+		let gen1 = order.from1.gennum.dec;
+
 		let ego_nor = DualRadix::from(sosa);
-		let ego_rev = DualRadix::from(limit.max.dec - order.from0_normal.dec);
+		let ego_rev = DualRadix::from(order.limit.max.dec - order.from0.normal.dec);
+
 		let dad_nor = DualRadix::from(ego_nor.dec * 2);
 		let dad_rev = DualRadix::from(ego_rev.dec * 2 + 1);
 		let mom_nor = DualRadix::from(ego_nor.dec * 2 + 1);
@@ -89,11 +99,16 @@ impl From<RadixDec> for Sosa {
 		let kid_nor = DualRadix::from((ego_nor.dec / 2) as RadixDec);
 		let kid_rev = DualRadix::from((ego_rev.dec / 2) as RadixDec);
 
+		let ego_gen = DualRadixPair::from((gen0, gen1));
+		let dad_gen = DualRadixPair::from((gen0 + 1, gen1 + 1));
+		let mom_gen = DualRadixPair::from((gen0 + 1, gen1 + 1));
+		let kid_gen = DualRadixPair::from((gen0.saturating_sub(1), if gen1 > 1 { gen1 - 1 } else { 0 }));
+
 		Self {
-			ego: (ego_nor, ego_rev, ego_sex),
-			dad: (dad_nor, dad_rev, dad_sex),
-			mom: (mom_nor, mom_rev, mom_sex),
-			kid: (kid_nor, kid_rev, kid_sex),
+			ego: IndexOrder { normal: ego_nor, revers: ego_rev, gennum: ego_gen, gender: ego_sex },
+			dad: IndexOrder { normal: dad_nor, revers: dad_rev, gennum: dad_gen, gender: dad_sex },
+			mom: IndexOrder { normal: mom_nor, revers: mom_rev, gennum: mom_gen, gender: mom_sex },
+			kid: IndexOrder { normal: kid_nor, revers: kid_rev, gennum: kid_gen, gender: kid_sex },
 		}
 	}
 }
@@ -118,7 +133,6 @@ pub struct RadixBinList(Vec<RadixBin>);
 
 impl Index<usize> for RadixDecList {
 	type Output = RadixDec;
-
 	fn index(&self, index: usize) -> &Self::Output {
 		&self.0[index]
 	}
@@ -126,11 +140,11 @@ impl Index<usize> for RadixDecList {
 
 impl Index<usize> for RadixBinList {
 	type Output = RadixBin;
-
 	fn index(&self, index: usize) -> &Self::Output {
 		&self.0[index]
 	}
 }
+
 //▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -138,18 +152,20 @@ pub struct DualRadix {
 	pub dec: RadixDec,
 	pub bin: RadixBin,
 }
+
 impl From<RadixDec> for DualRadix {
 	fn from(dec: RadixDec) -> Self {
 		Self { dec, bin: format!("{dec:b}") }
 	}
 }
+
 impl From<RadixBin> for DualRadix {
 	fn from(bin: RadixBin) -> Self {
 		let dec = RadixDec::from_str_radix(&bin, 2).unwrap();
-
 		Self { dec, bin }
 	}
 }
+
 impl DualRadix {
 	pub fn end_zeros_count(a: &str) -> RadixDec {
 		let mut r = 0;
@@ -166,6 +182,7 @@ impl DualRadix {
 		}
 		r
 	}
+
 	pub fn end_zeros_clear(a: &str) -> RadixDec {
 		let c = a.trim_end_matches('0');
 		let r = RadixDec::from_str_radix(c, 2).unwrap();
@@ -175,9 +192,10 @@ impl DualRadix {
 		r
 	}
 }
+
 impl std::fmt::Display for DualRadix {
 	fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-		write!(f, "\x1b[38;2;255;215;0m{}₍₁₀₎\x1b[0m · \x1b[38;2;165;102;42m{}₍₂₎\x1b[0m", self.dec, self.bin,)
+		write!(f, "\x1b[38;2;255;215;0m{}₍₁₀₎\x1b[0m · \x1b[38;2;165;102;42m{}₍₂₎\x1b[0m", self.dec, self.bin)
 	}
 }
 
@@ -186,11 +204,13 @@ pub struct DualRadixPair {
 	pub dec: (RadixDec, RadixDec),
 	pub bin: (RadixBin, RadixBin),
 }
+
 impl From<(RadixDec, RadixDec)> for DualRadixPair {
 	fn from((dec1, dec2): (RadixDec, RadixDec)) -> Self {
 		Self { dec: (dec1, dec2), bin: (format!("{dec1:b}"), format!("{dec2:b}")) }
 	}
 }
+
 impl From<(RadixBin, RadixBin)> for DualRadixPair {
 	fn from((bin1, bin2): (RadixBin, RadixBin)) -> Self {
 		Self {
@@ -199,62 +219,23 @@ impl From<(RadixBin, RadixBin)> for DualRadixPair {
 		}
 	}
 }
+
 impl From<(DualRadix, DualRadix)> for DualRadixPair {
 	fn from((a, b): (DualRadix, DualRadix)) -> Self {
 		Self { dec: (a.dec, b.dec), bin: (a.bin, b.bin) }
 	}
 }
 
-//▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
-
-#[derive(Debug, Clone, PartialEq, Eq)]
-pub struct DualRadixList {
-	pub dec: RadixDecList,
-	pub bin: RadixBinList,
-}
-
-impl DualRadixList {
-	pub fn new() -> Self {
-		Self { dec: RadixDecList(Vec::new()), bin: RadixBinList(Vec::new()) }
-	}
-
-	pub fn len(&self) -> usize {
-		self.dec.0.len()
-	}
-
-	pub fn is_empty(&self) -> bool {
-		self.dec.0.is_empty()
-	}
-
-	pub fn push(&mut self, value: DualRadix) {
-		self.dec.0.push(value.dec);
-		self.bin.0.push(value.bin);
-	}
-
-	pub fn insert(&mut self, index: usize, value: DualRadix) {
-		self.dec.0.insert(index, value.dec);
-		self.bin.0.insert(index, value.bin);
-	}
-
-	pub fn remove(&mut self, index: usize) -> DualRadix {
-		DualRadix { dec: self.dec.0.remove(index), bin: self.bin.0.remove(index) }
-	}
-
-	pub fn pop(&mut self) -> Option<DualRadix> {
-		Some(DualRadix { dec: self.dec.0.pop()?, bin: self.bin.0.pop()? })
-	}
-
-	pub fn clear(&mut self) {
-		self.dec.0.clear();
-		self.bin.0.clear();
+impl std::fmt::Display for DualRadixPair {
+	fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+		write!(
+			f,
+			"\x1b[38;2;255;215;0m₀→{}₍₁₀₎\x1b[0m · \x1b[38;2;255;215;0m₁→{}₍₁₀₎\x1b[0m · \x1b[38;2;165;102;42m₀→{}₍₂₎\x1b[0m · \x1b[38;2;165;102;42m₁→{}₍₂₎\x1b[0m",
+			self.dec.0, self.dec.1, self.bin.0, self.bin.1
+		)
 	}
 }
 
-impl Default for DualRadixList {
-	fn default() -> Self {
-		Self::new()
-	}
-}
 //▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
 #[derive(Debug, Clone, PartialEq, Eq, Hash, PartialOrd, Ord, Copy)]
@@ -269,7 +250,7 @@ impl From<RadixDec> for SosaSex {
 	fn from(sosa: RadixDec) -> Self {
 		if sosa < 2 {
 			Self::MaleOrFemale
-		//} else if sosa % 2 == 0 {
+		/* POPRZEDNIO UŻYWANE `} else if sosa % 2 == 0 {` */
 		} else if sosa.is_multiple_of(2) {
 			Self::Male
 		} else {
@@ -277,11 +258,13 @@ impl From<RadixDec> for SosaSex {
 		}
 	}
 }
+
 impl From<RadixBin> for SosaSex {
 	fn from(bin: RadixBin) -> Self {
 		Self::from(RadixDec::from_str_radix(&bin, 2).unwrap())
 	}
 }
+
 impl SosaSex {
 	/// Zwraca znak płci w formacie Unicode.
 	pub fn get_char(self) -> &'static str {
@@ -307,65 +290,6 @@ impl std::fmt::Display for SosaSex {
 //▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub struct GenerationOfSosa {
-	pub from0: DualRadix,
-	pub from1: DualRadix,
-}
-
-impl From<RadixDec> for GenerationOfSosa {
-	fn from(sosa: RadixDec) -> Self {
-		// Pokolenie liczone od 0 (Ego = 0, Rodzice = 1, Dziadkowie = 2...)
-		// wersja poprzednia: let g0 = (sosa as f64).log2().floor() as RadixDec;
-		let g0 = sosa.ilog2() as RadixDec;
-		// Pokolenie liczone od 1 (Ego = 1, Rodzice = 2, Dziadkowie = 3...)
-		let g1 = g0 + 1;
-		Self { from0: DualRadix::from(g0), from1: DualRadix::from(g1) }
-	}
-}
-
-impl From<RadixBin> for GenerationOfSosa {
-	fn from(bin: RadixBin) -> Self {
-		Self::from(RadixDec::from_str_radix(&bin, 2).unwrap())
-	}
-}
-
-impl GenerationOfSosa {
-	pub fn sosa_minmax_in_generation(&self, generation_mode: IndexingMode) -> (DualRadix, DualRadix) {
-		let generation = match generation_mode {
-			IndexingMode::From0 => self.from0.dec,
-			IndexingMode::From1 => self.from1.dec,
-		};
-
-		match generation_mode {
-			IndexingMode::From0 => {
-				if generation == 0 {
-					// Bezpiecznik: pierwsze pokolenie ma zakres 1–1.
-					(DualRadix::from(1), DualRadix::from(1))
-				} else {
-					(
-						DualRadix::from(2_u64.pow(generation as u32)),
-						DualRadix::from(2_u64.pow(generation as u32 + 1) - 1),
-					)
-				}
-			}
-			IndexingMode::From1 => {
-				if generation == 0 {
-					// Bezpiecznik: wartość poza standardową numeracją pokoleń.
-					(DualRadix::from(0), DualRadix::from(0))
-				} else {
-					(
-						DualRadix::from(2_u64.pow((generation - 1) as u32)),
-						DualRadix::from(2_u64.pow(generation as u32) - 1),
-					)
-				}
-			}
-		}
-	}
-}
-
-//▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
-
-#[derive(Debug, Clone, PartialEq, Eq)]
 pub struct GenerationLimitOfSosa {
 	pub min: DualRadix,
 	pub max: DualRadix,
@@ -374,7 +298,6 @@ pub struct GenerationLimitOfSosa {
 impl From<RadixDec> for GenerationLimitOfSosa {
 	fn from(sosa: RadixDec) -> Self {
 		let generation = (sosa as f64).log2().floor() as u32;
-
 		Self { min: DualRadix::from(2_u64.pow(generation)), max: DualRadix::from(2_u64.pow(generation + 1) - 1) }
 	}
 }
@@ -389,28 +312,31 @@ impl From<RadixBin> for GenerationLimitOfSosa {
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct GenerationIndex {
-	pub from0_normal: DualRadix,
-	pub from1_normal: DualRadix,
-	pub from0_revers: DualRadix,
-	pub from1_revers: DualRadix,
+	pub from0: IndexOrder<DualRadix>,
+	pub from1: IndexOrder<DualRadix>,
+	pub limit: GenerationLimitOfSosa,
 }
 
 impl From<RadixDec> for GenerationIndex {
 	fn from(sosa: RadixDec) -> Self {
 		let limit = GenerationLimitOfSosa::from(sosa);
+		let g0 = (sosa as f64).log2().floor() as RadixDec;
+		let g1 = g0 + 1;
+		let gender = SosaSex::from(sosa);
+
 		let from1_normal = DualRadix::from(sosa + 1 - limit.min.dec);
 		let from0_normal = DualRadix::from(from1_normal.dec - 1);
 		let from1_revers = DualRadix::from(limit.max.dec + 1 - sosa);
 		let from0_revers = DualRadix::from(from1_revers.dec - 1);
 
-		Self { from0_normal, from1_normal, from0_revers, from1_revers }
+		Self {
+			from0: IndexOrder { normal: from0_normal, revers: from0_revers, gennum: DualRadix::from(g0), gender },
+			from1: IndexOrder { normal: from1_normal, revers: from1_revers, gennum: DualRadix::from(g1), gender },
+			limit,
+		}
 	}
 }
-impl From<RadixBin> for GenerationIndex {
-	fn from(bin: RadixBin) -> Self {
-		Self::from(RadixDec::from_str_radix(&bin, 2).unwrap())
-	}
-}
+
 //▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -429,19 +355,22 @@ pub struct LinesOfSosa {
 	pub auxiliary_index_within_dad_line: DualRadix,
 	pub auxiliary_index_within_mom_line: DualRadix,
 }
+
 impl LinesOfSosa {
+	/// funkcja pomocnicza
 	fn from_sosa_get_line(sosa: RadixDec, line_mom: bool) -> LineOfSosa {
 		let order = GenerationIndex::from(sosa);
-		let limit = GenerationLimitOfSosa::from(sosa);
-		let level = GenerationOfSosa::from(sosa).from1;
+		// let limit = GenerationLimitOfSosa::from(sosa);
+		// let level = GenerationOfSosa::from(sosa).from1;
+		let level = &order.from1.gennum;
 
 		let sosa_ego_nor = DualRadix::from(sosa);
-		let sosa_ego_rev = DualRadix::from(limit.max.dec - order.from0_normal.dec);
+		let sosa_ego_rev = DualRadix::from(order.limit.max.dec - order.from0.normal.dec);
 
 		let (indexing_from1, indexing_from0, ego_sosa) = if line_mom {
-			(order.from1_revers, order.from0_revers, &sosa_ego_rev)
+			(&order.from1.revers, &order.from0.revers, &sosa_ego_rev)
 		} else {
-			(order.from1_normal, order.from0_normal, &sosa_ego_nor)
+			(&order.from1.normal, &order.from0.normal, &sosa_ego_nor)
 		};
 
 		let line_sort = DualRadix::from(if indexing_from1.dec == 1 {
@@ -466,7 +395,7 @@ impl From<RadixDec> for LinesOfSosa {
 	fn from(sosa: RadixDec) -> Self {
 		let line_dad = LinesOfSosa::from_sosa_get_line(sosa, false);
 		let line_mom = LinesOfSosa::from_sosa_get_line(sosa, true);
-		// ░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░ ░
+
 		Self {
 			dad: line_dad.line_and_index,
 			mom: line_mom.line_and_index,
@@ -477,3 +406,138 @@ impl From<RadixDec> for LinesOfSosa {
 		}
 	}
 }
+
+// -----------------------------------------------------------------------------
+// Extension Trait dla formatowania linii (np. "24 — 1")
+// -----------------------------------------------------------------------------
+pub trait LineCode {
+	fn get_code(&self) -> String;
+}
+
+// Obsługa krotek dziesiętnych: entry.lines.dad.dec.get_code()
+impl LineCode for (RadixDec, RadixDec) {
+	fn get_code(&self) -> String {
+		format!("{}⁝{}", self.0, self.1)
+	}
+}
+
+// Obsługa krotek binarnych: entry.lines.dad.bin.get_code()
+impl LineCode for (RadixBin, RadixBin) {
+	fn get_code(&self) -> String {
+		format!("{}⁝{}", self.0, self.1)
+	}
+}
+
+//▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+//▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒       POMYSŁ ALE ZBĘDNY       ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+//▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+//
+// #[derive(Debug, Clone, PartialEq, Eq)]
+// pub struct DualRadixList {
+// 	pub dec: RadixDecList,
+// 	pub bin: RadixBinList,
+// }
+//
+// impl DualRadixList {
+// 	pub fn new() -> Self {
+// 		Self { dec: RadixDecList(Vec::new()), bin: RadixBinList(Vec::new()) }
+// 	}
+//
+// 	pub fn len(&self) -> usize {
+// 		self.dec.0.len()
+// 	}
+//
+// 	pub fn is_empty(&self) -> bool {
+// 		self.dec.0.is_empty()
+// 	}
+//
+// 	pub fn push(&mut self, value: DualRadix) {
+// 		self.dec.0.push(value.dec);
+// 		self.bin.0.push(value.bin);
+// 	}
+//
+// 	pub fn insert(&mut self, index: usize, value: DualRadix) {
+// 		self.dec.0.insert(index, value.dec);
+// 		self.bin.0.insert(index, value.bin);
+// 	}
+//
+// 	pub fn remove(&mut self, index: usize) -> DualRadix {
+// 		DualRadix { dec: self.dec.0.remove(index), bin: self.bin.0.remove(index) }
+// 	}
+//
+// 	pub fn pop(&mut self) -> Option<DualRadix> {
+// 		Some(DualRadix { dec: self.dec.0.pop()?, bin: self.bin.0.pop()? })
+// 	}
+//
+// 	pub fn clear(&mut self) {
+// 		self.dec.0.clear();
+// 		self.bin.0.clear();
+// 	}
+// }
+//
+// impl Default for DualRadixList {
+// 	fn default() -> Self {
+// 		Self::new()
+// 	}
+// }
+
+//▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+//▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒       STARE  POZOSTAŁOŚCI        ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+//▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+//
+// #[derive(Debug, Clone, PartialEq, Eq)]
+// pub struct GenerationOfSosa {
+// 	pub from0: DualRadix,
+// 	pub from1: DualRadix,
+// }
+//
+// impl From<RadixDec> for GenerationOfSosa {
+// 	fn from(sosa: RadixDec) -> Self {
+// 		// Pokolenie liczone od 0 (Ego = 0, Rodzice = 1, Dziadkowie = 2...)
+// 		// wersja poprzednia: let g0 = (sosa as f64).log2().floor() as RadixDec;
+// 		let g0 = sosa.ilog2() as RadixDec;
+// 		// Pokolenie liczone od 1 (Ego = 1, Rodzice = 2, Dziadkowie = 3...)
+// 		let g1 = g0 + 1;
+// 		Self { from0: DualRadix::from(g0), from1: DualRadix::from(g1) }
+// 	}
+// }
+//
+// impl From<RadixBin> for GenerationOfSosa {
+// 	fn from(bin: RadixBin) -> Self {
+// 		Self::from(RadixDec::from_str_radix(&bin, 2).unwrap())
+// 	}
+// }
+//
+// impl GenerationOfSosa {
+// 	pub fn sosa_minmax_in_generation(&self, generation_mode: IndexingMode) -> (DualRadix, DualRadix) {
+// 		let generation = match generation_mode {
+// 			IndexingMode::From0 => self.from0.dec,
+// 			IndexingMode::From1 => self.from1.dec,
+// 		};
+//
+// 		match generation_mode {
+// 			IndexingMode::From0 => {
+// 				if generation == 0 {
+// 					// Bezpiecznik: pierwsze pokolenie ma zakres 1–1.
+// 					(DualRadix::from(1), DualRadix::from(1))
+// 				} else {
+// 					(
+// 						DualRadix::from(2_u64.pow(generation as u32)),
+// 						DualRadix::from(2_u64.pow(generation as u32 + 1) - 1),
+// 					)
+// 				}
+// 			}
+// 			IndexingMode::From1 => {
+// 				if generation == 0 {
+// 					// Bezpiecznik: wartość poza standardową numeracją pokoleń.
+// 					(DualRadix::from(0), DualRadix::from(0))
+// 				} else {
+// 					(
+// 						DualRadix::from(2_u64.pow((generation - 1) as u32)),
+// 						DualRadix::from(2_u64.pow(generation as u32) - 1),
+// 					)
+// 				}
+// 			}
+// 		}
+// 	}
+// }
