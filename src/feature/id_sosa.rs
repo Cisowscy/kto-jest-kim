@@ -2,6 +2,162 @@
 
 use std::ops::{Index, RangeInclusive};
 
+/* # README
+ * ## API of `PersonEntry`
+ *
+ * sosa.ego.normal.get_text()
+ * sosa.ego.normal.dec.get_text()
+ * sosa.ego.normal.bin.get_text()
+ * sosa.ego.revers.get_text()
+ * sosa.ego.revers.dec.get_text()
+ * sosa.ego.revers.bin.get_text()
+ * sosa.ego.genum.get_text()
+ * sosa.ego.genum.dec.0.get_text()
+ * sosa.ego.genum.bin.0.get_text()
+ * sosa.ego.genum.dec.1.get_text()
+ * sosa.ego.genum.bin.1.get_text()
+ * sosa.ego.gender.get_char()
+ *
+ * sosa.dad.normal.get_text()
+ * sosa.dad.normal.dec.get_text()
+ * sosa.dad.normal.bin.get_text()
+ * sosa.dad.revers.get_text()
+ * sosa.dad.revers.dec.get_text()
+ * sosa.dad.revers.bin.get_text()
+ * sosa.dad.genum.get_text()
+ * sosa.dad.genum.dec.0.get_text()
+ * sosa.dad.genum.bin.0.get_text()
+ * sosa.dad.genum.dec.1.get_text()
+ * sosa.dad.genum.bin.1.get_text()
+ * sosa.dad.gender.get_char()
+ *
+ * sosa.mom.normal.get_text()
+ * sosa.mom.normal.dec.get_text()
+ * sosa.mom.normal.bin.get_text()
+ * sosa.mom.revers.get_text()
+ * sosa.mom.revers.dec.get_text()
+ * sosa.mom.revers.bin.get_text()
+ * sosa.mom.genum.get_text()
+ * sosa.mom.genum.dec.0.get_text()
+ * sosa.mom.genum.bin.0.get_text()
+ * sosa.mom.genum.dec.1.get_text()
+ * sosa.mom.genum.bin.1.get_text()
+ * sosa.mom.gender.get_char()
+ *
+ * sosa.kid.normal.get_text()
+ * sosa.kid.normal.dec.get_text()
+ * sosa.kid.normal.bin.get_text()
+ * sosa.kid.revers.get_text()
+ * sosa.kid.revers.dec.get_text()
+ * sosa.kid.revers.bin.get_text()
+ * sosa.kid.genum.get_text()
+ * sosa.kid.genum.dec.0.get_text()
+ * sosa.kid.genum.bin.0.get_text()
+ * sosa.kid.genum.dec.1.get_text()
+ * sosa.kid.genum.bin.1.get_text()
+ * sosa.kid.gender.get_char()
+ *
+ * index.from0.normal.get_text()
+ * index.from0.normal.dec.get_text()
+ * index.from0.normal.bin.get_text()
+ * index.from0.revers.get_text()
+ * index.from0.revers.dec.get_text()
+ * index.from0.revers.bin.get_text()
+ * index.from0.genum.get_text()
+ * index.from0.genum.dec.get_text()
+ * index.from0.genum.bin.get_text()
+ * index.from0.gender.get_char()
+ *
+ * index.from1.normal.get_text()
+ * index.from1.normal.dec.get_text()
+ * index.from1.normal.bin.get_text()
+ * index.from1.revers.get_text()
+ * index.from1.revers.dec.get_text()
+ * index.from1.revers.bin.get_text()
+ * index.from1.genum.get_text()
+ * index.from1.genum.dec.get_text()
+ * index.from1.genum.bin.get_text()
+ * index.from1.gender.get_char()
+ *
+ * index.limit.min.get_text()
+ * index.limit.min.dec.get_text()
+ * index.limit.min.bin.get_text()
+ * index.limit.max.get_text()
+ * index.limit.max.dec.get_text()
+ * index.limit.max.bin.get_text()
+ *
+ * lines.dad.get_code()
+ * lines.dad.get_text()
+ * lines.dad.dec.0.get_text()
+ * lines.dad.dec.1.get_text()
+ * lines.dad.bin.0.get_text()
+ * lines.dad.bin.1.get_text()
+ * lines.generation_where_start_dad_line.get_text()
+ * lines.generation_where_start_dad_line.dec.get_text()
+ * lines.generation_where_start_dad_line.bin.get_text()
+ * lines.auxiliary_index_within_dad_line.get_text()
+ * lines.auxiliary_index_within_dad_line.dec.get_text()
+ * lines.auxiliary_index_within_dad_line.bin.get_text()
+ *
+ * lines.mom.get_code()
+ * lines.mom.get_text()
+ * lines.mom.dec.0.get_text()
+ * lines.mom.dec.1.get_text()
+ * lines.mom.bin.0.get_text()
+ * lines.mom.bin.1.get_text()
+ * lines.generation_where_start_mom_line.get_text()
+ * lines.generation_where_start_mom_line.dec.get_text()
+ * lines.generation_where_start_mom_line.bin.get_text()
+ * lines.auxiliary_index_within_mom_line.get_text()
+ * lines.auxiliary_index_within_mom_line.dec.get_text()
+ * lines.auxiliary_index_within_mom_line.bin.get_text()
+ *
+ *  ## SAMPLE of `PersonEntry`
+ * PersonEntry {
+ *  	sosa: Sosa {
+ *  		ego: IndexOrder {
+ *  			normal: DualRadix { dec: 44, bin: "101100" },
+ *  			revers: DualRadix { dec: 51, bin: "110011" },
+ *  			gennum: DualRadixPair { dec: (5, 6), bin: ("101", "110") },
+ *  			gender: Male },
+ *  		dad: IndexOrder {
+ *  			normal: DualRadix { dec: 88, bin: "1011000" },
+ *  			revers: DualRadix { dec: 103, bin: "1100111" },
+ *  			gennum: DualRadixPair { dec: (6, 7), bin: ("110", "111") },
+ *  			gender: Male },
+ *  		mom: IndexOrder {
+ *  			normal: DualRadix { dec: 89, bin: "1011001" },
+ *  			revers: DualRadix { dec: 102, bin: "1100110" },
+ *  			gennum: DualRadixPair { dec: (6, 7), bin: ("110", "111") },
+ *  			gender: Female },
+ *  		kid: IndexOrder {
+ *  			normal: DualRadix { dec: 22, bin: "10110" },
+ *  			revers: DualRadix { dec: 25, bin: "11001" },
+ *  			gennum: DualRadixPair { dec: (4, 5), bin: ("100", "101") },
+ *  			gender: Male } },
+ *  	index: GenerationIndex {
+ *  		from0: IndexOrder {
+ *  			normal: DualRadix { dec: 12, bin: "1100" },
+ *  			revers: DualRadix { dec: 19, bin: "10011" },
+ *  			gennum: DualRadix { dec: 5, bin: "101" },
+ *  			gender: Male },
+ *  		from1: IndexOrder {
+ *  			normal: DualRadix { dec: 13, bin: "1101" },
+ *  			revers: DualRadix { dec: 20, bin: "10100" },
+ *  			gennum: DualRadix { dec: 6, bin: "110" },
+ *  			gender: Male },
+ *  		limit: GenerationLimitOfSosa {
+ *  			min: DualRadix { dec: 32, bin: "100000" },
+ *  			max: DualRadix { dec: 63, bin: "111111" } } },
+ *  	lines: LinesOfSosa {
+ *  		dad: DualRadixPair { dec: (12, 3), bin: ("1100", "11") },
+ *  		mom: DualRadixPair { dec: (53, 1), bin: ("110101", "1") },
+ *  		generation_where_start_dad_line: DualRadix { dec: 4, bin: "100" },
+ *  		generation_where_start_mom_line: DualRadix { dec: 6, bin: "110" },
+ *  		auxiliary_index_within_dad_line: DualRadix { dec: 11, bin: "1011" },
+ *  		auxiliary_index_within_mom_line: DualRadix { dec: 51, bin: "110011" } } }
+ */
+
 //▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
 #[derive(Debug, Clone, PartialEq, Eq)]
@@ -193,12 +349,6 @@ impl DualRadix {
 	}
 }
 
-impl std::fmt::Display for DualRadix {
-	fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-		write!(f, "\x1b[38;2;255;215;0m{}₍₁₀₎\x1b[0m · \x1b[38;2;165;102;42m{}₍₂₎\x1b[0m", self.dec, self.bin)
-	}
-}
-
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct DualRadixPair {
 	pub dec: (RadixDec, RadixDec),
@@ -226,13 +376,138 @@ impl From<(DualRadix, DualRadix)> for DualRadixPair {
 	}
 }
 
+//impl std::fmt::Display for DualRadixPair {
+//	fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+//		write!(
+//			f,
+//			"\x1b[38;2;255;215;0m₀→{}₍₁₀₎\x1b[0m · \x1b[38;2;255;215;0m₁→{}₍₁₀₎\x1b[0m · \x1b[38;2;165;102;42m₀→{}₍₂₎\x1b[0m · \x1b[38;2;165;102;42m₁→{}₍₂₎\x1b[0m",
+//			self.dec.0, self.dec.1, self.bin.0, self.bin.1
+//		)
+//	}
+//}
+
+// -----------------------------------------------------------------------------
+// Trait do uniwersalnego formatowania reprezentacji dwusystemowej
+// -----------------------------------------------------------------------------
+pub trait RadixFormat {
+	/// Czysty tekst bez kodów ANSI (bezpieczny dla tabel, plików i kalkulacji szerokości)
+	fn get_text(&self) -> String;
+
+	/// Tekst z kolorowaniem ANSI RGB (do bezpośredniego wypisania w terminalu)
+	fn get_color(&self) -> String;
+}
+
+// -----------------------------------------------------------------------------
+// 1. Skalary: RadixDec (u64) oraz RadixBin (String / str)
+// -----------------------------------------------------------------------------
+
+impl RadixFormat for RadixDec {
+	fn get_text(&self) -> String {
+		format!("{self}₍₁₀₎")
+	}
+
+	fn get_color(&self) -> String {
+		format!("\x1b[38;2;255;215;0m{self}₍₁₀₎\x1b[0m")
+	}
+}
+
+impl RadixFormat for str {
+	fn get_text(&self) -> String {
+		format!("{self}₍₂₎")
+	}
+
+	fn get_color(&self) -> String {
+		format!("\x1b[38;2;165;102;42m{self}₍₂₎\x1b[0m")
+	}
+}
+
+impl RadixFormat for RadixBin {
+	fn get_text(&self) -> String {
+		self.as_str().get_text()
+	}
+
+	fn get_color(&self) -> String {
+		self.as_str().get_color()
+	}
+}
+
+// -----------------------------------------------------------------------------
+// 2. Krotki: (RadixDec, RadixDec) oraz (RadixBin, RadixBin)
+// -----------------------------------------------------------------------------
+
+impl RadixFormat for (RadixDec, RadixDec) {
+	fn get_text(&self) -> String {
+		format!("₀→{} · ₁→{}", self.0.get_text(), self.1.get_text())
+	}
+
+	fn get_color(&self) -> String {
+		format!("₀→{} · ₁→{}", self.0.get_color(), self.1.get_color())
+	}
+}
+
+impl RadixFormat for (RadixBin, RadixBin) {
+	fn get_text(&self) -> String {
+		format!("₀→{} · ₁→{}", self.0.get_text(), self.1.get_text())
+	}
+
+	fn get_color(&self) -> String {
+		format!("₀→{} · ₁→{}", self.0.get_color(), self.1.get_color())
+	}
+}
+
+// -----------------------------------------------------------------------------
+// 3. Kontenery: DualRadix oraz DualRadixPair
+// -----------------------------------------------------------------------------
+
+impl DualRadix {
+	pub fn get_text(&self) -> String {
+		format!("{} · {}", self.dec.get_text(), self.bin.get_text())
+	}
+
+	pub fn get_color(&self) -> String {
+		format!("{} · {}", self.dec.get_color(), self.bin.get_color())
+	}
+}
+
+impl RadixFormat for DualRadix {
+	fn get_text(&self) -> String {
+		self.get_text()
+	}
+
+	fn get_color(&self) -> String {
+		self.get_color()
+	}
+}
+
+impl DualRadixPair {
+	pub fn get_text(&self) -> String {
+		format!("{} · {}", self.dec.get_text(), self.bin.get_text())
+	}
+
+	pub fn get_color(&self) -> String {
+		format!("{} · {}", self.dec.get_color(), self.bin.get_color())
+	}
+}
+
+impl RadixFormat for DualRadixPair {
+	fn get_text(&self) -> String {
+		self.get_text()
+	}
+
+	fn get_color(&self) -> String {
+		self.get_color()
+	}
+}
+
+impl std::fmt::Display for DualRadix {
+	fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+		f.write_str(&self.get_color())
+	}
+}
+
 impl std::fmt::Display for DualRadixPair {
 	fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-		write!(
-			f,
-			"\x1b[38;2;255;215;0m₀→{}₍₁₀₎\x1b[0m · \x1b[38;2;255;215;0m₁→{}₍₁₀₎\x1b[0m · \x1b[38;2;165;102;42m₀→{}₍₂₎\x1b[0m · \x1b[38;2;165;102;42m₁→{}₍₂₎\x1b[0m",
-			self.dec.0, self.dec.1, self.bin.0, self.bin.1
-		)
+		f.write_str(&self.get_color())
 	}
 }
 
