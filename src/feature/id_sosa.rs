@@ -4,6 +4,7 @@ use std::ops::{Index, RangeInclusive};
 
 //▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 
+#[derive(Debug, Clone, PartialEq, Eq)]
 pub enum PersonEntryFrom<'a> {
 	Given(RadixDec),
 	Array(&'a [RadixDec]),
@@ -19,6 +20,14 @@ impl<'a> PersonEntryFrom<'a> {
 			Self::Range(range) => Box::new(range),
 		};
 		sosas.filter(|&sosa| sosa > 0).map(PersonEntry::from_sosa)
+	}
+
+	/// Pobiera pierwszy poprawny rekord (działa spójnie dla Given, pierwszego elementu Array oraz Range).
+	pub fn to_entry(&self) -> Option<PersonEntry> {
+		match *self {
+			PersonEntryFrom::Given(sosa) if sosa > 0 => Some(PersonEntry::from_sosa(sosa)),
+			_ => None,
+		}
 	}
 }
 
@@ -173,16 +182,16 @@ impl std::fmt::Display for DualRadix {
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
-pub struct DualRadix2 {
+pub struct DualRadixPair {
 	pub dec: (RadixDec, RadixDec),
 	pub bin: (RadixBin, RadixBin),
 }
-impl From<(RadixDec, RadixDec)> for DualRadix2 {
+impl From<(RadixDec, RadixDec)> for DualRadixPair {
 	fn from((dec1, dec2): (RadixDec, RadixDec)) -> Self {
 		Self { dec: (dec1, dec2), bin: (format!("{dec1:b}"), format!("{dec2:b}")) }
 	}
 }
-impl From<(RadixBin, RadixBin)> for DualRadix2 {
+impl From<(RadixBin, RadixBin)> for DualRadixPair {
 	fn from((bin1, bin2): (RadixBin, RadixBin)) -> Self {
 		Self {
 			dec: (RadixDec::from_str_radix(&bin1, 2).unwrap(), RadixDec::from_str_radix(&bin2, 2).unwrap()),
@@ -190,7 +199,7 @@ impl From<(RadixBin, RadixBin)> for DualRadix2 {
 		}
 	}
 }
-impl From<(DualRadix, DualRadix)> for DualRadix2 {
+impl From<(DualRadix, DualRadix)> for DualRadixPair {
 	fn from((a, b): (DualRadix, DualRadix)) -> Self {
 		Self { dec: (a.dec, b.dec), bin: (a.bin, b.bin) }
 	}
@@ -406,15 +415,15 @@ impl From<RadixBin> for GenerationIndex {
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct LineOfSosa {
-	pub line_and_index: DualRadix2,
+	pub line_and_index: DualRadixPair,
 	pub generation_where_start_line: DualRadix,
 	pub auxiliary_index_within_line: DualRadix,
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub struct LinesOfSosa {
-	pub dad: DualRadix2,
-	pub mom: DualRadix2,
+	pub dad: DualRadixPair,
+	pub mom: DualRadixPair,
 	pub generation_where_start_dad_line: DualRadix,
 	pub generation_where_start_mom_line: DualRadix,
 	pub auxiliary_index_within_dad_line: DualRadix,
@@ -446,7 +455,7 @@ impl LinesOfSosa {
 		let line_gene = DualRadix::from(line_tier.bin.len() as RadixDec);
 		// -----------------------------------------------------------------------------------------
 		LineOfSosa {
-			line_and_index: DualRadix2::from((line_name.dec, line_sort.dec)),
+			line_and_index: DualRadixPair::from((line_name.dec, line_sort.dec)),
 			generation_where_start_line: DualRadix { dec: line_gene.dec, bin: line_gene.bin },
 			auxiliary_index_within_line: DualRadix { dec: line_tier.dec, bin: line_tier.bin },
 		}
@@ -468,5 +477,3 @@ impl From<RadixDec> for LinesOfSosa {
 		}
 	}
 }
-
-//▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒

@@ -10,9 +10,42 @@ fn main() {
 	add_rows(&mut table, PersonEntryFrom::Array(&[1, 4, 7, 0]));
 	add_rows(&mut table, PersonEntryFrom::Given(44));
 
+	//▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+	let x44 = PersonEntryFrom::Given(44);
+	println!(
+		"DLA 44::  FROM-0: {} FROM-1:  {}",
+		x44.to_entry().unwrap().generation.from0,
+		x44.to_entry().unwrap().generation.from1
+	);
+	let x88 = PersonEntryFrom::Given(88);
+	println!(
+		"DLA 88::  FROM-0: {} FROM-1:  {}",
+		x88.to_entry().unwrap().generation.from0,
+		x88.to_entry().unwrap().generation.from1
+	);
+	let x89 = PersonEntryFrom::Given(89);
+	println!(
+		"DLA 89::  FROM-0: {} FROM-1:  {}",
+		x89.to_entry().unwrap().generation.from0,
+		x89.to_entry().unwrap().generation.from1
+	);
+	let x22 = PersonEntryFrom::Given(22);
+	println!(
+		"DLA 22::  FROM-0: {} FROM-1:  {}",
+		x22.to_entry().unwrap().generation.from0,
+		x22.to_entry().unwrap().generation.from1
+	);
+
+	println!("{:?}", x44.to_entry().unwrap());
+	println!("{}", "▒".repeat(100));
+	println!("{}", "▒".repeat(100));
+
+	//▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 	println!("{table}");
 }
 // ======example usage =====
+
+//▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 // styl i nagłówek, w jednym miejscu
 fn new_table() -> Table {
 	let mut table = Table::new();
