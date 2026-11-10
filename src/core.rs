@@ -5,6 +5,7 @@ pub mod template {
 }
 
 pub mod feature {
+	pub mod id_kinship;
 	pub mod id_sosa;
 	pub mod table_id_sosa;
 }
