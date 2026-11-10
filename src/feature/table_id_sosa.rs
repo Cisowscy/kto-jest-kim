@@ -1,5 +1,5 @@
-// src/feature/table_id_sosa.rs
-//
+// ./src/feature/table_id_sosa.rs
+
 // Tryb wejścia sosy (pojedyncza / lista / zakres) oraz pula kolumn tabeli.
 // Pula to lista z README w `id_sosa.rs`: każda kolumna to jedna ścieżka z tego README.
 // Korzysta z niej UI (`template::kim_jest_antenat`) i przykład (`examples/e_sosa.rs`).
