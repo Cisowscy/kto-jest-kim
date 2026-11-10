@@ -148,25 +148,25 @@ fn main_letter(c: char) -> Option<(KinRole, KinSex)> {
 	Some(match c {
 		'E' => (Person, Male),
 		'X' => (Person, Female),
-		'U' => (Person, Neutral),
+		'U' => (Person, Unisex),
 		'P' => (Parent, Male),
 		'M' => (Parent, Female),
-		'O' => (Parent, Neutral),
+		'O' => (Parent, Unisex),
 		'F' => (Child, Male),
 		'N' => (Child, Female),
-		'D' => (Child, Neutral),
+		'D' => (Child, Unisex),
 		'B' => (Sibling, Male),
 		'S' => (Sibling, Female),
-		'G' => (Sibling, Neutral),
+		'G' => (Sibling, Unisex),
 		'H' => (Spouse, Male),
 		'W' => (Spouse, Female),
-		'C' => (Spouse, Neutral),
+		'C' => (Spouse, Unisex),
 		'A' => (Friend, Male),
 		'Y' => (Friend, Female),
-		'J' => (Friend, Neutral),
+		'J' => (Friend, Unisex),
 		'R' => (Relative, Male),
 		'K' => (Relative, Female),
-		'Q' => (Relative, Neutral),
+		'Q' => (Relative, Unisex),
 		_ => return None,
 	})
 }
@@ -178,25 +178,25 @@ fn main_char(role: KinRole, sex: KinSex) -> char {
 	match (role, sex) {
 		(Person, Male) => 'E',
 		(Person, Female) => 'X',
-		(Person, Neutral) => 'U',
+		(Person, Unisex) => 'U',
 		(Parent, Male) => 'P',
 		(Parent, Female) => 'M',
-		(Parent, Neutral) => 'O',
+		(Parent, Unisex) => 'O',
 		(Child, Male) => 'F',
 		(Child, Female) => 'N',
-		(Child, Neutral) => 'D',
+		(Child, Unisex) => 'D',
 		(Sibling, Male) => 'B',
 		(Sibling, Female) => 'S',
-		(Sibling, Neutral) => 'G',
+		(Sibling, Unisex) => 'G',
 		(Spouse, Male) => 'H',
 		(Spouse, Female) => 'W',
-		(Spouse, Neutral) => 'C',
+		(Spouse, Unisex) => 'C',
 		(Friend, Male) => 'A',
 		(Friend, Female) => 'Y',
-		(Friend, Neutral) => 'J',
+		(Friend, Unisex) => 'J',
 		(Relative, Male) => 'R',
 		(Relative, Female) => 'K',
-		(Relative, Neutral) => 'Q',
+		(Relative, Unisex) => 'Q',
 	}
 }
 
@@ -225,16 +225,16 @@ fn dict_letter(c: char) -> Option<(KinRole, KinSex)> {
 	use KinRole::*;
 	use KinSex::*;
 	Some(match c {
-		'P' => (Parent, Neutral),
+		'P' => (Parent, Unisex),
 		'F' => (Parent, Male),
 		'M' => (Parent, Female),
-		'C' => (Child, Neutral),
+		'C' => (Child, Unisex),
 		'S' => (Child, Male),
 		'D' => (Child, Female),
-		'G' => (Sibling, Neutral),
+		'G' => (Sibling, Unisex),
 		'B' => (Sibling, Male),
 		'Z' => (Sibling, Female),
-		'E' => (Spouse, Neutral),
+		'E' => (Spouse, Unisex),
 		'H' => (Spouse, Male),
 		'W' => (Spouse, Female),
 		_ => return None,
@@ -246,16 +246,16 @@ fn dict_char(role: KinRole, sex: KinSex) -> Option<char> {
 	use KinRole::*;
 	use KinSex::*;
 	Some(match (role, sex) {
-		(Parent, Neutral) => 'P',
+		(Parent, Unisex) => 'P',
 		(Parent, Male) => 'F',
 		(Parent, Female) => 'M',
-		(Child, Neutral) => 'C',
+		(Child, Unisex) => 'C',
 		(Child, Male) => 'S',
 		(Child, Female) => 'D',
-		(Sibling, Neutral) => 'G',
+		(Sibling, Unisex) => 'G',
 		(Sibling, Male) => 'B',
 		(Sibling, Female) => 'Z',
-		(Spouse, Neutral) => 'E',
+		(Spouse, Unisex) => 'E',
 		(Spouse, Male) => 'H',
 		(Spouse, Female) => 'W',
 		_ => return None,
@@ -374,7 +374,7 @@ fn parse_main_step(chars: &[char], pos: &mut usize) -> Result<KinStep, KinParseE
 	*pos += 1;
 
 	if let Some((role, sex)) = main_letter(c) {
-		return Ok(KinStep::Relation(role, sex, None));
+		return Ok(KinStep::Relation(role, sex, KinAge::Unspecified));
 	}
 	if c == '[' {
 		return Err(KinParseError::GroupWithoutModifier(at));
@@ -446,8 +446,8 @@ fn render_dict(step: &KinStep, out: &mut String) -> Option<()> {
 		KinStep::Bond(..) => return None,
 		KinStep::Relation(role, sex, age) => {
 			out.push(dict_char(*role, *sex)?);
-			if let Some(age) = age {
-				out.push(dict_age_char(*age));
+			if let Some(c) = dict_age_char(*age) {
+				out.push(c);
 			}
 		}
 	}
@@ -464,12 +464,12 @@ mod tests {
 	use super::*;
 
 	fn rel(role: KinRole, sex: KinSex) -> KinStep {
-		KinStep::Relation(role, sex, None)
+		KinStep::Relation(role, sex, KinAge::Unspecified)
 	}
 
 	#[test]
 	fn main_examples() {
-		assert_eq!(Main.parse("PD"), Ok(vec![rel(Parent, Male), rel(Child, Neutral)]));
+		assert_eq!(Main.parse("PD"), Ok(vec![rel(Parent, Male), rel(Child, Unisex)]));
 		assert_eq!(Main.parse("MS"), Ok(vec![rel(Parent, Female), rel(Sibling, Female)]));
 		assert_eq!(Main.parse("ZP"), Ok(vec![KinStep::Bond(KinBond::Foster, vec![rel(Parent, Male)])]));
 		assert_eq!(
@@ -514,12 +514,15 @@ mod tests {
 		assert_eq!(Dictionary.parse("MZ"), Ok(vec![rel(Parent, Female), rel(Sibling, Female)]));
 		assert_eq!(
 			Dictionary.parse("FB+"),
-			Ok(vec![rel(Parent, Male), KinStep::Relation(Sibling, Male, Some(KinAge::Elder))])
+			Ok(vec![rel(Parent, Male), KinStep::Relation(Sibling, Male, KinAge::Elder)])
 		);
 		assert_eq!(Dictionary.parse("B−"), Dictionary.parse("B-"));
 		assert_eq!(Dictionary.parse("+B"), Err(KinParseError::MisplacedAge(0)));
 		assert_eq!(Dictionary.parse("B++"), Err(KinParseError::MisplacedAge(2)));
 		assert_eq!(Dictionary.parse("A"), Err(KinParseError::UnknownChar(0, 'A')));
+		assert_eq!(Dictionary.parse("B!"), Ok(vec![KinStep::Relation(Sibling, Male, KinAge::Similar)]));
+		assert_eq!(Dictionary.parse("B*"), Dictionary.parse("B"));
+		assert_eq!(Dictionary.parse("B*+"), Err(KinParseError::MisplacedAge(2)));
 	}
 
 	#[test]
@@ -528,7 +531,7 @@ mod tests {
 			let steps = Main.parse(text).unwrap();
 			assert_eq!(Main.render(&steps).as_deref(), Some(text));
 		}
-		for text in ["MZ", "FB+", "SD−", "EHW"] {
+		for text in ["MZ", "FB+", "SD−", "EHW", "B!"] {
 			let steps = Dictionary.parse(text).unwrap();
 			assert_eq!(Dictionary.render(&steps).as_deref(), Some(text));
 		}
@@ -537,6 +540,8 @@ mod tests {
 		// wiek nie istnieje w systemie 1, przyjaciel nie istnieje w systemie 2
 		assert_eq!(Main.render(&Dictionary.parse("B+").unwrap()), None);
 		assert_eq!(Dictionary.render(&Main.parse("BA").unwrap()), None);
+		// `*` przy zapisie znika, bo brak znaku znaczy to samo
+		assert_eq!(Dictionary.render(&Dictionary.parse("B*").unwrap()).as_deref(), Some("B"));
 		// L[ZP] zapisuje się krócej jako LZP
 		assert_eq!(Main.render(&Main.parse("L[ZP]").unwrap()).as_deref(), Some("LZP"));
 	}
