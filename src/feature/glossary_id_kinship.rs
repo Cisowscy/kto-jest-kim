@@ -15,10 +15,10 @@ pub enum KinshipJago {
 	FC,	MC,	PC, // 2.2 (2)
 	FS,	FD,	MS,	MD,  // 2.2 (2)
 
-	//FG,	MG,	PG, // 2.3 (3/2)
-	//BC,	ZC,	GC, // 2.3 (3/2)
-	//FB,	FZ,	MB,	MZ, // 2.3 (3/2)
-	//BS,	BD,	ZS,	ZD, // 2.3 (3/2)
+	// FG,	MG,	PG, // 2.3 (3/2)
+	// BC,	ZC,	GC, // 2.3 (3/2)
+	// FB,	FZ,	MB,	MZ, // 2.3 (3/2)
+	// BS,	BD,	ZS,	ZD, // 2.3 (3/2)
 }
 
 macro_rules! pary {
