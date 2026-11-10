@@ -42,6 +42,17 @@ macro_rules! pary {
 			}
 		}
 	};
+		// czwórka <=> czwórka: (ogół, ogół linii, mężczyzna, kobieta)
+	(@zbierz [$($acc:tt)*]
+		($u1:ident $nu1:literal, $l1:ident $nl1:literal, $m1:ident $nm1:literal, $f1:ident $nf1:literal $(,)?) <=>
+		($u2:ident $nu2:literal, $l2:ident $nl2:literal, $m2:ident $nm2:literal, $f2:ident $nf2:literal $(,)?); $($rest:tt)*) => {
+		pary!(@zbierz [$($acc)*
+			($u1 $nu1, $u2 $nu2)
+			($l1 $nl1, $l2 $nl2)
+			($m1 $nm1, $m2 $nm2) ($m1 $nm1, $f2 $nf2)
+			($f1 $nf1, $m2 $nm2) ($f1 $nf1, $f2 $nf2)
+		] $($rest)*);
+	};
 	// trójka <=> trójka: nijaka ↔ nijaka oraz każda płeć z lewej z każdą z prawej
 	(@zbierz [$($acc:tt)*]
 		($u1:ident $nu1:literal, $m1:ident $nm1:literal, $f1:ident $nf1:literal) <=>
@@ -63,6 +74,9 @@ macro_rules! pary {
 	// pojedyncza para, jak dotąd
 	(@zbierz [$($acc:tt)*] $a:ident $na:literal <=> $b:ident $nb:literal; $($rest:tt)*) => {
 		pary!(@zbierz [$($acc)* ($a $na, $b $nb)] $($rest)*);
+	};
+	(@zbierz [$($acc:tt)*] $($zly:tt)*) => {
+		compile_error!(concat!("pary!: nieznana postać wiersza: ", stringify!($($zly)*)));
 	};
 	// wejście
 	($($t:tt)*) => { pary!(@zbierz [] $($t)*); };
@@ -91,7 +105,7 @@ pary! {
 	) <=> ( CC "wnukowie",
 			DC "wnukowie po córce",
 			DS "wnuk po córce",
-			DS "wnuk po córce"
+			DD "wnuczka po córce"
 		);
 
 	//E "małżonek/małżonkowie" <=> E "małżonek/małżonkowie";
