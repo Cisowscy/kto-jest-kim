@@ -19,6 +19,20 @@ pub enum KinshipJago {
 	BC,	ZC,	GC, // 2.3 (3/2)
 	FB,	FZ,	MB,	MZ, // 2.3 (3/2)
 	BS,	BD,	ZS,	ZD, // 2.3 (3/2)
+
+	// MH,FW,PE,EC, // 2.4 (P1)
+	// WS,WD,WC,// 2.4 (P1)
+	// HS,HD,HC,// 2.4 (P1)
+
+	// DH,SW,CE,EP, // 2.5 (P1)
+	// WF,WM,WP,// 2.5 (P1)
+	// HF,HM,HP,// 2.5 (P1)
+
+	// ZH,BW,GE,EG, // 2.6 (P2)
+	// WB,WZ,WG,// 2.6 (P2)
+	// HB,HZ,HG,// 2.6 (P2)
+
+
 }
 
 macro_rules! pary {
@@ -131,18 +145,4 @@ pary! {
 	(MB "wuj") <=> ( ZC "siostrzeniec,siostrzenica", ZS "siostrzeniec", ZD "siostrzenica" );
 	(MZ "sioła") <=> ( ZC "córowiec,córowica", ZS "córowiec", ZD "córowica" );
 
-	//E "małżonek/małżonkowie" <=> E "małżonek/małżonkowie";
-	//H "mąż" <=> W "żona";
 }
-
-//pary! {
-//	PC "rodzeństwo przyrodnie" 	<=> PC "rodzeństwo przyrodnie";
-//	FC "rodzeństwo przyrodnie ojczyste" 	<=> FC "rodzeństwo przyrodnie ojczyste";
-//	MC "rodzeństwo przyrodnie macierzyste" 	<=> MC "rodzeństwo przyrodnie macierzyste";
-//	FS "półbrat ojczysty" 		<=> FS "półbrat ojczysty";
-//	FS "półbrat ojczysty" 		<=> FD "półsuiostra ojczysta";
-//	FD "półsuiostra ojczysta" 	<=> FD "półsuiostra ojczysta";
-//	MS "półbrat macierzysty" 	<=> MS "półbrat macierzysty";
-//	MS "półbrat macierzysty" 	<=> MD "półsiostra macierzysta";
-//	MD "półsiostra macierzysta" <=> MD "półsiostra macierzysta";
-//}
