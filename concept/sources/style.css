@@ -1,0 +1,678 @@
+BODY
+	{
+	font-family: Verdana, "Arial Unicode MS", FreeSans, "Lucida Sans Unicode", "Lucida Grande", "Bitstream Vera Sans", Andika, "DejaVu Sans", "Microsoft Sans Serif", Arial, Helvetica, Calibri, Tahoma, sans-serif;
+	font-size: 12px;
+	color: black;
+	margin: 30px;
+	background: #ffffcc;
+	}
+P
+	{
+	text-align: justify;
+	text-indent: 46px;
+	text-decoration: none;
+	}
+OL, UL
+	{
+	margin-top: 0;
+	margin-bottom: 0;
+	}
+LI
+	{
+	margin-top: 5px;
+	margin-bottom: 5px;
+	text-align: justify;
+	}
+TABLE
+	{
+	margin: auto;
+	}
+table, tr, th, td
+	{
+	border-collapse: collapse;
+	border-color: #111111;
+	vertical-align: middle;
+	}
+TH, H1, H2, H3, H4
+	{
+	text-align: center;
+	}
+TH, TD
+	{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	}
+H1, H2, H3, H4, H5, H6
+	{
+	font-family: "Arial Narrow", Arial, "Arial Unicode MS", FreeSans, "Lucida Sans Unicode", "Lucida Grande", "Bitstream Vera Sans", Andika, "DejaVu Sans", "Microsoft Sans Serif", Helvetica, Verdana, Calibri, Tahoma, sans-serif;
+	font-stretch: condensed;
+	}
+H1
+	{
+	font-size: 34px;
+	border: solid;
+	}
+H2
+	{
+	font-size: 31px;
+	}
+H3
+	{
+	font-size: 28px;
+	}
+H4
+	{
+	font-size: 25px;
+	}
+H5
+	{
+	font-size: 22px;
+	}
+H6
+	{
+	font-size: 19px;
+	}
+blockquote
+	{
+	border-top: double;
+	border-bottom: double;
+	border-left: double;
+	border-right: double;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin: 3px;
+	}
+A
+	{
+	text-decoration: none;
+	}
+A[href]:link
+	{
+	color: blue;
+	}
+A[href]:visited
+	{
+	color: purple;
+	}
+A[href]:hover
+	{
+	color: red;
+	}
+A[href]:active
+	{
+	color: maroon;
+	}
+.ac, .ac P, .ac LI
+	{
+	text-indent: 0;
+	text-align: center;
+	}
+.acms
+	{
+	vertical-align: middle;
+	font-size: smaller;
+	text-align: center;
+	}
+.aj, .aj P, .aj LI
+	{
+	text-indent: 0;
+	text-align: justify;
+	}
+.aja, .aja P
+	{
+	text-indent: 46px;
+	text-align: justify;
+	}
+.aja LI
+	{
+	text-indent: 0px;
+	text-align: justify;
+	}
+.al, .al P, .al LI
+	{
+	text-indent: 0;
+	text-align: left;
+	}
+.ala, .ala P
+	{
+	text-indent: 46px;
+	text-align: left;
+	}
+.ala LI
+	{
+	text-indent: 0px;
+	text-align: left;
+	}
+.ar, .ar P, .ar LI
+	{
+	text-indent: 0;
+	text-align: right;
+	}
+.arx, .arx P, .arx LI
+	{
+	font-size: 190%;
+	}
+.bia
+	{
+	color: white;
+	background: black;
+	}
+.dct
+	{
+	width: 160px;
+	padding: 3px;
+	border: 1px outset black;
+	background: #c62929;
+	font-family: Verdana, "Arial Unicode MS", FreeSans, "Lucida Sans Unicode", "Lucida Grande", "Bitstream Vera Sans", Andika, "DejaVu Sans", "Microsoft Sans Serif", Arial, Helvetica, Calibri, Tahoma, sans-serif;
+	font-size: 10px;
+	color: #082963;
+	text-align: center;
+	}
+.fa
+	{
+	font-family: "Arial Unicode MS", "Linux Libertine", FreeSans, FreeSerif, "Bitstream Cyberbit", "TITUS Cyberbit Basic", Code2000, Code2001, Code2002, "Doulos SIL", "Charis SIL", "Galatia SIL", "Gentium Plus", Gentium, GentiumAlt, Cardo, "Chrysanthi Unicode", "Lucida Sans Unicode", "Lucida Grande", "Bitstream Vera Sans", Andika, "DejaVu Sans", "Microsoft Sans Serif", Arial, Helvetica, Verdana, Calibri, Cambria, Tahoma, "Times New Roman", Gardiner, Abydos, "JSesh font";
+	}
+.fan
+	{
+	font-family: Andika, "Arial Unicode MS", "Linux Libertine", FreeSans, FreeSerif, "Bitstream Cyberbit", "TITUS Cyberbit Basic", Code2000, Code2001, Code2002, "Doulos SIL", "Charis SIL", "Galatia SIL", "Gentium Plus", Gentium, GentiumAlt, Cardo, "Chrysanthi Unicode", "Lucida Sans Unicode", "Lucida Grande", "Bitstream Vera Sans", "DejaVu Sans", "Microsoft Sans Serif", Arial, Helvetica, Verdana, Calibri, Cambria, Tahoma, "Times New Roman", Gardiner, Abydos, "JSesh font";
+	}
+.fc
+	{
+	font-family: "Lucida Sans Unicode", "Arial Unicode MS", FreeSans, "Lucida Grande", "Bitstream Vera Sans", Andika, "DejaVu Sans", "Microsoft Sans Serif", Arial, Helvetica, Verdana, Calibri, Tahoma, sans-serif;
+	}
+.fnt12, .fnt12 P, .fnt12 LI, .fnt12 TD
+	{
+	font-size: 12px;
+	}
+.fp
+	{
+	font-family: Palemonas;
+	font-size: 24px;
+	}
+.fpm
+	{
+	font-family: "Palemonas MUFI";
+	font-size: 24px;
+	}
+.ft
+	{
+	font-family: "TITUS Cyberbit Basic", "Arial Unicode MS", "Linux Libertine", FreeSans, FreeSerif, "Bitstream Cyberbit", Code2000, Code2001, Code2002, "Doulos SIL", "Charis SIL", "Galatia SIL", "Gentium Plus", Gentium, GentiumAlt, Cardo, "Chrysanthi Unicode", "Lucida Sans Unicode", "Lucida Grande", "Bitstream Vera Sans", Andika, "DejaVu Sans", "Microsoft Sans Serif", Arial, Helvetica, Verdana, Calibri, Cambria, Tahoma, "Times New Roman";
+	}
+.h, .hi, .menu li ul, .menu div ul, .menu div h3, .menu div div
+	{
+	display: none;
+	}
+.hb, .hbx
+	{
+	font-family: "SBL Hebrew", "Ezra SIL", "Ezra SIL SR", David, "Linux Libertine", FreeSerif, "Bitstream Cyberbit", "TITUS Cyberbit Basic", Code2000, Code2001, Code2002, "Doulos SIL", "Charis SIL", "Galatia SIL", "Gentium Plus", Gentium, GentiumAlt, Cardo, "Chrysanthi Unicode", Cambria, "Times New Roman", serif;
+	}
+.hb
+	{
+	font-size: 22px;
+	line-height: 18px;
+	}
+.hbx
+	{
+	font-size: 125%;
+	}
+.in
+	{
+	font-family: Mangal, Shruti, Latha, Gautami, Tunga, Kartika, Kalinga, "Sanskrit 2003", Vrinda, "Mukti Narrow", Likhan, Raavi, AnmolUni, "Arial Unicode MS", FreeSans, "Lucida Sans Unicode", "Lucida Grande", "Bitstream Vera Sans", Andika, "DejaVu Sans", "Microsoft Sans Serif", Arial, Helvetica, Verdana, Calibri, Tahoma, sans-serif;
+	font-size: 32px;
+	line-height: 32px;
+	}
+.in1
+	{
+	font-family: Uttara, "Linux Libertine", FreeSerif, "Bitstream Cyberbit", "TITUS Cyberbit Basic", Code2000, Code2001, Code2002, "Doulos SIL", "Charis SIL", "Galatia SIL", "Gentium Plus", Gentium, GentiumAlt, Cardo, "Chrysanthi Unicode", Cambria, "Times New Roman", serif;
+	font-size: 26px;
+	line-height: 32px;
+	}
+.in2
+	{
+	font-family: Chandas, "Linux Libertine", FreeSerif, "Bitstream Cyberbit", "TITUS Cyberbit Basic", Code2000, Code2001, Code2002, "Doulos SIL", "Charis SIL", "Galatia SIL", "Gentium Plus", Gentium, GentiumAlt, Cardo, "Chrysanthi Unicode", Cambria, "Times New Roman", serif;
+	font-size: 26px;
+	line-height: 32px;
+	}
+.in3
+	{
+	font-family: "Mukti Narrow", Vrinda, Likhan, "Arial Unicode MS", FreeSans, "Lucida Sans Unicode", "Lucida Grande", "Bitstream Vera Sans", Andika, "DejaVu Sans", "Microsoft Sans Serif", Arial, Helvetica, Verdana, Calibri, Tahoma, sans-serif;
+	font-size: 32px;
+	line-height: 42px;
+	}
+.in4
+	{
+	font-family: Likhan, Vrinda, "Mukti Narrow", "Arial Unicode MS", FreeSans, "Lucida Sans Unicode", "Lucida Grande", "Bitstream Vera Sans", Andika, "DejaVu Sans", "Microsoft Sans Serif", Arial, Helvetica, Verdana, Calibri, Tahoma, sans-serif;
+	font-size: 32px;
+	line-height: 42px;
+	}
+.in5
+	{
+	font-family: AnmolUni, Raavi, "Arial Unicode MS", FreeSans, "Lucida Sans Unicode", "Lucida Grande", "Bitstream Vera Sans", Andika, "DejaVu Sans", "Microsoft Sans Serif", Arial, Helvetica, Verdana, Calibri, Tahoma, sans-serif;
+	font-size: 26px;
+	line-height: 26px;
+	}
+.in6
+	{
+	font-family: Vrinda, "Mukti Narrow", Likhan, "Arial Unicode MS", FreeSans, "Lucida Sans Unicode", "Lucida Grande", "Bitstream Vera Sans", Andika, "DejaVu Sans", "Microsoft Sans Serif", Arial, Helvetica, Verdana, Calibri, Tahoma, sans-serif;
+	font-size: 32px;
+	line-height: 32px;
+	}
+.in7
+	{
+	font-family: Raavi, AnmolUni, "Arial Unicode MS", FreeSans, "Lucida Sans Unicode", "Lucida Grande", "Bitstream Vera Sans", Andika, "DejaVu Sans", "Microsoft Sans Serif", Arial, Helvetica, Verdana, Calibri, Tahoma, sans-serif;
+	font-size: 32px;
+	line-height: 32px;
+	}
+.ina
+	{
+	font-family: "Arial Unicode MS", Mangal, Shruti, Latha, Gautami, Tunga, Kartika, Kalinga, "Sanskrit 2003", FreeSans, "Lucida Sans Unicode", "Lucida Grande", "Bitstream Vera Sans", Andika, "DejaVu Sans", "Microsoft Sans Serif", Arial, Helvetica, Verdana, Calibri, Tahoma, sans-serif;
+	font-size: 32px;
+	line-height: 42px;
+	}
+.ins
+	{
+	font-family: "Sanskrit 2003", Mangal, Shruti, Latha, Gautami, Tunga, Kartika, Kalinga, "Arial Unicode MS", FreeSans, "Lucida Sans Unicode", "Lucida Grande", "Bitstream Vera Sans", Andika, "DejaVu Sans", "Microsoft Sans Serif", Arial, Helvetica, Verdana, Calibri, Tahoma, sans-serif;
+	font-size: 32px;
+	line-height: 32px;
+	}
+.int
+	{
+	font-family: "TITUS Cyberbit Basic", Uttara, Chandas, "Linux Libertine", FreeSerif, "Bitstream Cyberbit", Code2000, Code2001, Code2002, "Doulos SIL", "Charis SIL", "Galatia SIL", "Gentium Plus", Gentium, GentiumAlt, Cardo, "Chrysanthi Unicode", Cambria, "Times New Roman", serif;
+	font-size: 36px;
+	line-height: 36px;
+	}
+.inx
+	{
+	font-family: "Bitstream Cyberbit", Chandas, Uttara, "Linux Libertine", FreeSerif, "TITUS Cyberbit Basic", Code2000, Code2001, Code2002, "Doulos SIL", "Charis SIL", "Galatia SIL", "Gentium Plus", Gentium, GentiumAlt, Cardo, "Chrysanthi Unicode", Cambria, "Times New Roman", serif;
+	font-size: 30px;
+	line-height: 42px;
+	}
+.klbk
+	{
+	color: black;
+	}
+.klbl
+	{
+	color: blue;
+	}
+.klbl1
+	{
+	color: #add8e6;
+	}
+.klbr, .klbr TD
+	{
+	color: maroon;
+	}
+.klbr1
+	{
+	color: #943634;
+	}
+.klfu
+	{
+	color: fuchsia;
+	}
+.klgn
+	{
+	color: green;
+	}
+.klgy
+	{
+	color: #999999;
+	}
+.klkh
+	{
+	color: khaki;
+	}
+.kllb, A[href].kllb:link, A[href].kllb:visited, A[href].kllb:hover, A[href].kllb:active, .klzl li a[href]:link, .klzl li a[href]:visited, .klzl li a[href]:hover, .klzl li a[href]:active
+	{
+	color: #f2f2fd;
+	}
+.kllm
+	{
+	color: lime;
+	}
+.klna
+	{
+	color: goldenrod;
+	}
+.klog
+	{
+	color: #ff9933;
+	}
+.klol
+	{
+	color: olive;
+	}
+.klor
+	{
+	color: #ff8000;
+	}
+.klpr
+	{
+	color: purple;
+	}
+.klrd
+	{
+	color: red;
+	}
+.klsv
+	{
+	color: silver;
+	}
+.kltl
+	{
+	color: teal;
+	}
+.kltr
+	{
+	color: #0099ff;
+	}
+.klyl
+	{
+	color: yellow;
+	}
+.klwh
+	{
+	color: white;
+	}
+.klwy
+	{
+	color: #efefef;
+	}
+.klzl, A[href].klzl:link, A[href].klzl:visited, A[href].klzl:hover, A[href].klzl:active, .klzl li a[href]:link, .klzl li a[href]:visited, .klzl li a[href]:hover, .klzl li a[href]:active
+	{
+	color: #c0ffc0;
+	}
+.kol1
+	{
+	background: #ffd30d;
+	color: #003273;
+	}
+.kol2
+	{
+	background: #00dd00;
+	}
+.kol3
+	{
+	background: #22dddd;
+	}
+.kol4
+	{
+	background: #dd2222;
+	}
+.kol5
+	{
+	background: #ff22ff;
+	}
+.kol6
+	{
+	background: #9999ff;
+	}
+.kol7
+	{
+	background: #efefef;
+	}
+.kol8
+	{
+	background: #f2f2f2;
+	}
+.kol9
+	{
+	background: #ececec;
+	color: #2c2c2c;
+	}
+.kol10
+	{
+	background: #eeffee;
+	}
+.kol11
+	{
+	background: #ccffcc;
+	}
+.kol12
+	{
+	background: #ffcccc;
+	}
+.kol13
+	{
+	background: #ccccff;
+	}
+.kol14
+	{
+	background: #cccccc;
+	}
+.kol15
+	{
+	background: #f9f9f9;
+	}
+.kol16
+	{
+	background: #f5f5dc;
+	}
+.kol17
+	{
+	background: #fffff0;
+	}
+.kol18
+	{
+	background: #999999;
+	}
+.kur22, .kur27, .kur30rd
+	{
+	font-weight: bold;
+	font-family: FreeMono, "Everson Mono", "Courier New", monospace;
+	text-align: center;
+	text-indent: 0;
+	}
+.kur22
+	{
+	font-size: 22px;
+	}
+.kur27
+	{
+	font-size: 27px;
+	}
+.kur30rd
+	{
+	font-size: 30px;
+	color: red;
+	}
+.lnit
+	{
+	font-style: italic;
+	text-align: left;
+	}
+.lnit TH
+	{
+	font-style: normal;
+	}
+.ma8, .ma8 P
+	{
+	margin: 8px;
+	text-indent: 0;
+	}
+.ma8 LI
+	{
+	text-align: left;
+	}
+.md, .md TD
+	{
+	vertical-align: middle;
+	}
+.mat
+	{
+	font-family: mathfont;
+	}
+.n15
+	{
+	font-size: 20px;
+	}
+.n18
+	{
+	font-size: 24px;
+	}
+.nagl, .nagl TD
+	{
+	font-family: "MPH 2B damase", Dilyana, BukyVede, "Linux Libertine", FreeSerif, "Bitstream Cyberbit", "TITUS Cyberbit Basic", Code2000, Code2001, Code2002, "Doulos SIL", "Charis SIL", "Galatia SIL", "Gentium Plus", Gentium, GentiumAlt, Cardo, "Chrysanthi Unicode", Cambria, "Times New Roman", serif;
+	font-size: 26px;
+	}
+.nagl2, .nagl2 TD
+	{
+	font-family: Dilyana, "MPH 2B damase", BukyVede, "Arial Unicode MS", FreeSans, "Lucida Sans Unicode", "Lucida Grande", "Bitstream Vera Sans", Andika, "DejaVu Sans", "Microsoft Sans Serif", Arial, Helvetica, Verdana, Calibri, Tahoma, sans-serif;
+	font-size: 26px;
+	}
+.nl, .nl P, .nl PRE, .nl H6, .nl H5, .nl H4
+	{
+	margin-bottom: 0;
+	margin-top: 0;
+	}
+.nlbot, .nlbot P
+	{
+	margin-bottom: 0;
+	}
+.nltop, .nltop P
+	{
+	margin-top: 0;
+	text-indent: 0;
+	}
+.nwr, .nwr TD
+	{
+	white-space: nowrap;
+	}
+.pd1, .pd1 td, .pd1 tr, .pd1 tr td
+	{
+	padding-top: 1px;
+	padding-bottom: 1px;
+	border-bottom: 0px;
+	}
+.pd2, .pd2 td, .pd2 tr, .pd2 tr td
+	{
+	padding-top: 1px;
+	padding-bottom: 1px;
+	border-top: 0px;
+	border-bottom: 0px;
+	}
+.pd3, .pd3 td, .pd3 tr, .pd3 tr td
+	{
+	padding-left: 1px;
+	padding-right: 1px;
+	border-left: 0px;
+	border-right: 0px;
+	}
+.pd4, .pd4 td, .pd4 tr, .pd4 tr td
+	{
+	padding-left: 16px;
+	padding-right: 16px;
+	border-left: 0px;
+	border-right: 0px;
+	}
+.pn
+	{
+	cursor: pointer;
+	}
+.rf
+	{
+	border-top: 1px solid #000;
+	}
+.sla
+	{
+	font-size: 115%;
+	font-family: BukyVede, "Kliment Std", "RomanCyrillic Std", Menaion, "Menaion Medieval", Thryomanes, Dilyana, Lazov, "Arial Unicode MS", "Linux Libertine", FreeSans, FreeSerif, "Bitstream Cyberbit", "TITUS Cyberbit Basic", Code2000, Code2001, Code2002, "Doulos SIL", "Charis SIL", "Galatia SIL", "Gentium Plus", Gentium, GentiumAlt, Cardo, "Chrysanthi Unicode", "Lucida Sans Unicode", "Lucida Grande", "Bitstream Vera Sans", Andika, "DejaVu Sans", "Microsoft Sans Serif", Arial, Helvetica, Verdana, Calibri, Cambria, Tahoma, "Times New Roman";
+	}
+.smc
+	{
+	font-variant: small-caps;
+	}
+.sp
+	{
+	color: silver;
+	background-color: silver;
+	}
+.sp:hover
+	{
+	color: black;
+	background: #ffffcc;
+	}
+span.sp > span
+	{
+	visibility: hidden;
+	}
+span.sp:hover > span
+	{
+	visibility: visible;
+	}
+.tp, .tp TD
+	{
+	vertical-align: top;
+	}
+.tytul, .tytul TD
+	{
+	font-size: 18px;
+	text-indent: 0;
+	text-align: center;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	margin-bottom: 0;
+	}
+.uw, .uwaga, .uw TD, .uwaga TD
+	{
+	font-size: 10px;
+	}
+.v, .menu li:hover ul, .menu div:hover ul, .menu div:hover h3, .menu div:hover div
+	{
+	display: block;
+	}
+span.v, .vi
+	{
+	display: inline;
+	}
+li.v
+	{
+	display: list-item;
+	}
+table.v
+	{
+	display: table;
+	}
+caption.v
+	{
+	display: table-caption;
+	}
+colgroup.v
+	{
+	display: table-column-group;
+	}
+thead.v
+	{
+	display: table-header-group;
+	}
+tfoot.v
+	{
+	display: table-footer-group;
+	}
+tbody.v
+	{
+	display: table-row-group;
+	}
+td.v, th.v
+	{
+	display: table-cell;
+	}
+col.v
+	{
+	display: table-column;
+	}
+tr.v
+	{
+	display: table-row;
+	}
+.vat
+	{
+	vertical-align: top;
+	}

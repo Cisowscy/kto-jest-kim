@@ -32,6 +32,10 @@ pub enum KinshipJago {
 	WB,WZ,WG,// 2.6 (P2)
 	HB,HZ,HG,// 2.6 (P2)
 
+	PPP, FFP, MFP, FMP, MMP, // 3.1 (3)
+	CCC, SSC, SDC, DSC, DDC, // 3.1 (3)
+	FFF, FFM, MFF, MFM, FMF, FMM, MMF, MMM, // 3.1 (3)
+	SSS, SSD, SDS, SDD, DSS, DSD, DDS, DDD, // 3.1 (3)
 
 }
 
@@ -197,6 +201,48 @@ pary! {
 			HG "dziewierz,zełwa",
 			HB "dziewierz",
 			HZ "zełwa"
+		);
+
+		// 3.1 (3)
+	(
+		PPP "pradziadkowie",
+		FFP "rodzice dziadka ojczystego",
+		FFF "ojciec dziadka ojczystego",
+		FFM "matka dziadka ojczystego"
+	) <=> ( CCC "prawnukowie",
+			SSC "prawnukowie po synu syna",
+			SSS "prawnuk po synu syna",
+			SSD "prawnuczka po synu syna"
+		);
+	(
+		PPP "pradziadkowie",
+		MFP "rodzice dziadka macierzystego",
+		MFF "ojciec dziadka macierzystego",
+		MFM "matka dziadka macierzystego"
+	) <=> ( CCC "prawnukowie",
+			SDC "prawnukowie po córce syna",
+			SDS "prawnuk po córce syna",
+			SDD "prawnuczka po córce syna"
+		);
+	(
+		PPP "pradziadkowie",
+		FMP "rodzice babki ojczystej",
+		FMF "ojciec babki ojczystej",
+		FMM "matka babki ojczystej"
+	) <=> ( CCC "prawnukowie",
+			DSC "prawnukowie po synu córki",
+			DSS "prawnuk po synu córki",
+			DSD "prawnuczka po synu córki"
+		);
+	(
+		PPP "pradziadkowie",
+		MMP "rodzice babki macierzystej",
+		MMF "ojciec babki macierzystej",
+		MMM "matka babki macierzystej"
+	) <=> ( CCC "prawnukowie",
+			DDC "prawnukowie po córce córki",
+			DDS "prawnuk po córce córki",
+			DDD "prawnuczka po córce córki"
 		);
 
 }

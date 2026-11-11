@@ -1,0 +1,73 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" width="665" height="240" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+<meta name="Author" content="Grzegorz Jagodziński" />
+<rect style="fill:white;stroke:black;stroke-width:2" x="10" y="10" width="650" height="220" />
+<g style="stroke:black;stroke-width:2">
+<g style="fill:none">
+<path d="m 70,70 v -20 h 220 v 20" />
+<path d="m 190,50 v 20" />
+<path d="m 380,70 v -20 h 220 v 20" />
+<path d="m 480,50 v 20" />
+<path d="m 280,160 v -20 h 110 v 20" />
+<path d="m 450,160 v -20 h 60 v 20" />
+<path d="m 315,85 h 40" />
+<path d="m 315,95 h 40" />
+<path d="m 335,95 v 65" />
+<path d="m 40,160 v -20 h 60 v 20" />
+<path d="m 70,110 v 6" />
+<path d="m 70,140 v -12" />
+<path d="m 160,160 v -20 h 60 v 20" />
+<path d="m 190,110 v 6" />
+<path d="m 190,140 v -12" />
+<path d="m 480,110 v 6" />
+<path d="m 480,140 v -12" />
+<path d="m 570,160 v -20 h 60 v 20" />
+<path d="m 600,110 v 6" />
+<path d="m 600,140 v -12" />
+</g>
+<path style="fill:gray" d="m 315,200 40,0 v -40 h -40 z" />
+<!-- Panowie -->
+<path style="fill:aqua" d="m 50,110 h 40 l -20,-40 z" />
+<path style="fill:blue" d="m 360,110 h 40 l -20,-40 z" />
+<path style="fill:blue" d="m 460,110 h 40 l -20,-40 z" />
+<path style="fill:lime" d="m 80,200 h 40 l -20,-40 z" />
+<path style="fill:yellow" d="m 200,200 h 40 l -20,-40 z" />
+<path style="fill:yellow" d="m 370,200 h 40 l -20,-40 z" />
+<path style="fill:yellow" d="m 490,200 h 40 l -20,-40 z" />
+<path style="fill:lime" d="m 610,200 h 40 l -20,-40 z" />
+<!-- Panie -->
+<circle style="fill:red" cx="190" cy="90" r="20" />
+<circle style="fill:red" cx="290" cy="90" r="20" />
+<circle style="fill:fuchsia" cx="600" cy="90" r="20" />
+<circle style="fill:lime" cx="40" cy="180" r="20" />
+<circle style="fill:yellow" cx="160" cy="180" r="20" />
+<circle style="fill:yellow" cx="280" cy="180" r="20" />
+<circle style="fill:yellow" cx="450" cy="180" r="20" />
+<circle style="fill:lime" cx="570" cy="180" r="20" />
+</g>
+<g style="font-family:'DejaVu Sans';text-align:center;text-anchor:middle;fill:black;stroke:none;stroke-width:1px;line-height:1">
+<g style="font-size:19px">
+<text x="335" y="36">System irokeski</text>
+</g>
+<g style="font-size:13px">
+<text x="70" y="126">Wujek</text>
+<text x="190" y="126">Matka</text>
+<text x="290" y="126">Matka</text>
+<text x="380" y="126">Ojciec</text>
+<text x="480" y="126">Ojciec</text>
+<text x="600" y="126">Ciotka</text>
+<text x="40" y="216">Kuzynka</text>
+<text x="100" y="216">Kuzyn</text>
+<text x="160" y="216">Siostra</text>
+<text x="220" y="216">Brat</text>
+<text x="280" y="216">Siostra</text>
+<text x="335" y="216">Ego</text>
+<text x="390" y="216">Brat</text>
+<text x="450" y="216">Siostra</text>
+<text x="510" y="216">Brat</text>
+<text x="570" y="216">Kuzynka</text>
+<text x="630" y="216">Kuzyn</text>
+</g>
+</g>
+</svg>

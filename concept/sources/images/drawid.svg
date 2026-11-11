@@ -1,0 +1,283 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" width="2590" height="370" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg">
+<meta name="Author" content="Grzegorz Jagodziński" />
+<rect style="fill:white;stroke:black;stroke-width:5" x="10" y="10" width="2570" height="350" />
+<g style="stroke:brown;stroke-width:1">
+<path d="m 970,360 v -200" />
+<path d="m 1620,360 v -200" />
+</g>
+<g style="stroke:black;stroke-width:2">
+<g style="fill:none">
+<path d="m 370,50 v 40" />
+<path d="m 2220,50 v 40" />
+<path d="m 850,70 v 20" />
+<path d="m 1740,70 v 20" />
+<path d="m 130,90 v -40 h 1060 v 40" />
+<path d="m 610,90 v -20 h 480 v 20" />
+<path d="m 1400,90 v -40 h 1060 v 40" />
+<path d="m 1500,90 v -20 h 480 v 20" />
+<path d="m 1120,105 h 40" />
+<path d="m 1120,115 h 40" />
+<path d="m 1430,105 h 40" />
+<path d="m 1430,115 h 40" />
+<path d="m 130,130 v 6" />
+<path d="m 130,180 v -32" />
+<path d="m 370,130 v 6" />
+<path d="m 370,180 v -32" />
+<path d="m 610,130 v 6" />
+<path d="m 610,180 v -32" />
+<path d="m 850,130 v 6" />
+<path d="m 850,180 v -32" />
+<path d="m 1740,130 v 6" />
+<path d="m 1740,180 v -32" />
+<path d="m 1980,130 v 6" />
+<path d="m 1980,180 v -32" />
+<path d="m 2220,130 v 6" />
+<path d="m 2220,180 v -32" />
+<path d="m 2460,130 v 6" />
+<path d="m 2460,180 v -32" />
+<path d="m 1140,180 v -65" />
+<path d="m 1150,180 v 20" />
+<path d="m 1440,180 v 20" />
+<path d="m 1450,180 v -65" />
+<path d="m 70,200 v -20 h 120 v 20" />
+<path d="m 310,200 v -20 h 120 v 20" />
+<path d="m 550,200 v -20 h 120 v 20" />
+<path d="m 790,200 v -20 h 120 v 20" />
+<path d="m 1030,200 v -20 h 220 v 20" />
+<path d="m 1340,200 v -20 h 220 v 20" />
+<path d="m 1680,200 v -20 h 120 v 20" />
+<path d="m 1920,200 v -20 h 120 v 20" />
+<path d="m 2160,200 v -20 h 120 v 20" />
+<path d="m 2400,200 v -20 h 120 v 20" />
+<path d="m 1275,215 h 40" />
+<path d="m 1275,225 h 40" />
+<path d="m 1295,225 v 65" />
+<path d="m 70,240 v 6" />
+<path d="m 70,270 v -12" />
+<path d="m 190,240 v 6" />
+<path d="m 190,270 v -12" />
+<path d="m 310,240 v 6" />
+<path d="m 310,270 v -12" />
+<path d="m 430,240 v 6" />
+<path d="m 430,270 v -12" />
+<path d="m 550,240 v 6" />
+<path d="m 550,270 v -12" />
+<path d="m 670,240 v 6" />
+<path d="m 670,270 v -12" />
+<path d="m 790,240 v 6" />
+<path d="m 790,270 v -12" />
+<path d="m 910,240 v 6" />
+<path d="m 910,270 v -12" />
+<path d="m 1030,240 v 6" />
+<path d="m 1030,270 v -12" />
+<path d="m 1150,240 v 6" />
+<path d="m 1150,270 v -12" />
+<path d="m 1440,240 v 6" />
+<path d="m 1440,270 v -12" />
+<path d="m 1560,240 v 6" />
+<path d="m 1560,270 v -12" />
+<path d="m 1680,240 v 6" />
+<path d="m 1680,270 v -12" />
+<path d="m 1800,240 v 6" />
+<path d="m 1800,270 v -12" />
+<path d="m 1920,240 v 6" />
+<path d="m 1920,270 v -12" />
+<path d="m 2040,240 v 6" />
+<path d="m 2040,270 v -12" />
+<path d="m 2160,240 v 6" />
+<path d="m 2160,270 v -12" />
+<path d="m 2280,240 v 6" />
+<path d="m 2280,270 v -12" />
+<path d="m 2400,240 v 6" />
+<path d="m 2400,270 v -12" />
+<path d="m 2520,240 v 6" />
+<path d="m 2520,270 v -12" />
+<path d="m 40,290 v -20 h 60 v 20" />
+<path d="m 160,290 v -20 h 60 v 20" />
+<path d="m 280,290 v -20 h 60 v 20" />
+<path d="m 400,290 v -20 h 60 v 20" />
+<path d="m 520,290 v -20 h 60 v 20" />
+<path d="m 640,290 v -20 h 60 v 20" />
+<path d="m 760,290 v -20 h 60 v 20" />
+<path d="m 880,290 v -20 h 60 v 20" />
+<path d="m 1000,290 v -20 h 60 v 20" />
+<path d="m 1120,290 v -20 h 60 v 20" />
+<path d="m 1240,290 v -20 h 110 v 20" />
+<path d="m 1410,290 v -20 h 60 v 20" />
+<path d="m 1530,290 v -20 h 60 v 20" />
+<path d="m 1650,290 v -20 h 60 v 20" />
+<path d="m 1770,290 v -20 h 60 v 20" />
+<path d="m 1890,290 v -20 h 60 v 20" />
+<path d="m 2010,290 v -20 h 60 v 20" />
+<path d="m 2130,290 v -20 h 60 v 20" />
+<path d="m 2250,290 v -20 h 60 v 20" />
+<path d="m 2370,290 v -20 h 60 v 20" />
+<path d="m 2490,290 v -20 h 60 v 20" />
+</g>
+<path style="fill:gray" d="m 1275,330 40,0 v -40 h -40 z" />
+<!-- Panowie -->
+<path style="fill:deepskyblue" d="m 110,130 h 40 l -20,-40 z" />
+<path style="fill:deepskyblue" d="m 590,130 h 40 l -20,-40 z" />
+<path style="fill:deepskyblue" d="m 1170,130 h 40 l -20,-40 z" />
+<path style="fill:deepskyblue" d="m 1480,130 h 40 l -20,-40 z" />
+<path style="fill:deepskyblue" d="m 1720,130 h 40 l -20,-40 z" />
+<path style="fill:deepskyblue" d="m 2200,130 h 40 l -20,-40 z" />
+<path style="fill:aqua" d="m 50,240 h 40 l -20,-40 z" />
+<path style="fill:blue" d="m 290,240 h 40 l -20,-40 z" />
+<path style="fill:blue" d="m 530,240 h 40 l -20,-40 z" />
+<path style="fill:aqua" d="m 770,240 h 40 l -20,-40 z" />
+<path style="fill:aqua" d="m 1010,240 h 40 l -20,-40 z" />
+<path style="fill:blue" d="m 1320,240 h 40 l -20,-40 z" />
+<path style="fill:blue" d="m 1420,240 h 40 l -20,-40 z" />
+<path style="fill:blue" d="m 1660,240 h 40 l -20,-40 z" />
+<path style="fill:aqua" d="m 1900,240 h 40 l -20,-40 z" />
+<path style="fill:aqua" d="m 2140,240 h 40 l -20,-40 z" />
+<path style="fill:blue" d="m 2380,240 h 40 l -20,-40 z" />
+<path style="fill:lime" d="m 80,330 h 40 l -20,-40 z" />
+<path style="fill:yellow" d="m 200,330 h 40 l -20,-40 z" />
+<path style="fill:yellow" d="m 320,330 h 40 l -20,-40 z" />
+<path style="fill:lime" d="m 440,330 h 40 l -20,-40 z" />
+<path style="fill:yellow" d="m 560,330 h 40 l -20,-40 z" />
+<path style="fill:lime" d="m 680,330 h 40 l -20,-40 z" />
+<path style="fill:lime" d="m 800,330 h 40 l -20,-40 z" />
+<path style="fill:yellow" d="m 920,330 h 40 l -20,-40 z" />
+<path style="fill:lime" d="m 1040,330 h 40 l -20,-40 z" />
+<path style="fill:yellow" d="m 1160,330 h 40 l -20,-40 z" />
+<path style="fill:yellow" d="m 1330,330 h 40 l -20,-40 z" />
+<path style="fill:yellow" d="m 1450,330 h 40 l -20,-40 z" />
+<path style="fill:lime" d="m 1570,330 h 40 l -20,-40 z" />
+<path style="fill:yellow" d="m 1690,330 h 40 l -20,-40 z" />
+<path style="fill:lime" d="m 1810,330 h 40 l -20,-40 z" />
+<path style="fill:lime" d="m 1930,330 h 40 l -20,-40 z" />
+<path style="fill:yellow" d="m 2050,330 h 40 l -20,-40 z" />
+<path style="fill:lime" d="m 2170,330 h 40 l -20,-40 z" />
+<path style="fill:yellow" d="m 2290,330 h 40 l -20,-40 z" />
+<path style="fill:yellow" d="m 2410,330 h 40 l -20,-40 z" />
+<path style="fill:lime" d="m 2530,330 h 40 l -20,-40 z" />
+<!-- Panie -->
+<circle style="fill:deeppink" cx="370" cy="110" r="20" />
+<circle style="fill:deeppink" cx="850" cy="110" r="20" />
+<circle style="fill:deeppink" cx="1090" cy="110" r="20" />
+<circle style="fill:deeppink" cx="1400" cy="110" r="20" />
+<circle style="fill:deeppink" cx="1980" cy="110" r="20" />
+<circle style="fill:deeppink" cx="2460" cy="110" r="20" />
+<circle style="fill:red" cx="190" cy="220" r="20" />
+<circle style="fill:fuchsia" cx="430" cy="220" r="20" />
+<circle style="fill:fuchsia" cx="670" cy="220" r="20" />
+<circle style="fill:red" cx="910" cy="220" r="20" />
+<circle style="fill:red" cx="1150" cy="220" r="20" />
+<circle style="fill:red" cx="1250" cy="220" r="20" />
+<circle style="fill:fuchsia" cx="1560" cy="220" r="20" />
+<circle style="fill:fuchsia" cx="1800" cy="220" r="20" />
+<circle style="fill:red" cx="2040" cy="220" r="20" />
+<circle style="fill:red" cx="2280" cy="220" r="20" />
+<circle style="fill:fuchsia" cx="2520" cy="220" r="20" />
+<circle style="fill:lime" cx="40" cy="310" r="20" />
+<circle style="fill:yellow" cx="160" cy="310" r="20" />
+<circle style="fill:yellow" cx="280" cy="310" r="20" />
+<circle style="fill:lime" cx="400" cy="310" r="20" />
+<circle style="fill:yellow" cx="520" cy="310" r="20" />
+<circle style="fill:lime" cx="640" cy="310" r="20" />
+<circle style="fill:lime" cx="760" cy="310" r="20" />
+<circle style="fill:yellow" cx="880" cy="310" r="20" />
+<circle style="fill:lime" cx="1000" cy="310" r="20" />
+<circle style="fill:yellow" cx="1120" cy="310" r="20" />
+<circle style="fill:yellow" cx="1240" cy="310" r="20" />
+<circle style="fill:yellow" cx="1410" cy="310" r="20" />
+<circle style="fill:lime" cx="1530" cy="310" r="20" />
+<circle style="fill:yellow" cx="1650" cy="310" r="20" />
+<circle style="fill:lime" cx="1770" cy="310" r="20" />
+<circle style="fill:lime" cx="1890" cy="310" r="20" />
+<circle style="fill:yellow" cx="2010" cy="310" r="20" />
+<circle style="fill:lime" cx="2130" cy="310" r="20" />
+<circle style="fill:yellow" cx="2250" cy="310" r="20" />
+<circle style="fill:yellow" cx="2370" cy="310" r="20" />
+<circle style="fill:lime" cx="2490" cy="310" r="20" />
+</g>
+<g style="font-family:'DejaVu Sans';text-align:center;text-anchor:middle;fill:black;stroke:none;stroke-width:1px;line-height:1">
+<g style="font-size:19px">
+<text x="1295" y="35">System drawidyjski</text>
+</g>
+<g style="font-size:13px">
+<text x="130" y="146">Dziadek</text>
+<text x="370" y="146">Babka</text>
+<text x="610" y="146">Dziadek</text>
+<text x="850" y="146">Babka</text>
+<text x="1090" y="146">Babka</text>
+<text x="1190" y="146">Dziadek</text>
+<text x="1400" y="146">Babka</text>
+<text x="1500" y="146">Dziadek</text>
+<text x="1740" y="146">Dziadek</text>
+<text x="1980" y="146">Babka</text>
+<text x="2220" y="146">Dziadek</text>
+<text x="2460" y="146">Babka</text>
+<text x="70" y="256">Wujek</text>
+<text x="190" y="256">Matka</text>
+<text x="310" y="256">Ojciec</text>
+<text x="430" y="256">Ciotka</text>
+<text x="550" y="256">Ojciec</text>
+<text x="670" y="256">Ciotka</text>
+<text x="790" y="256">Wujek</text>
+<text x="910" y="256">Matka</text>
+<text x="1030" y="256">Wujek</text>
+<text x="1150" y="256">Matka</text>
+<text x="1250" y="256">Matka</text>
+<text x="1340" y="256">Ojciec</text>
+<text x="1440" y="256">Ojciec</text>
+<text x="1560" y="256">Ciotka</text>
+<text x="1680" y="256">Ojciec</text>
+<text x="1800" y="256">Ciotka</text>
+<text x="1920" y="256">Wujek</text>
+<text x="2040" y="256">Matka</text>
+<text x="2160" y="256">Wujek</text>
+<text x="2280" y="256">Matka</text>
+<text x="2400" y="256">Ojciec</text>
+<text x="2520" y="256">Ciotka</text>
+<text x="40" y="346">Kuzynka</text>
+<text x="100" y="346">Kuzyn</text>
+<text x="160" y="346">Siostra</text>
+<text x="220" y="346">Brat</text>
+<text x="280" y="346">Siostra</text>
+<text x="340" y="346">Brat</text>
+<text x="400" y="346">Kuzynka</text>
+<text x="460" y="346">Kuzyn</text>
+<text x="520" y="346">Siostra</text>
+<text x="580" y="346">Brat</text>
+<text x="640" y="346">Kuzynka</text>
+<text x="700" y="346">Kuzyn</text>
+<text x="760" y="346">Kuzynka</text>
+<text x="820" y="346">Kuzyn</text>
+<text x="880" y="346">Siostra</text>
+<text x="940" y="346">Brat</text>
+<text x="1000" y="346">Kuzynka</text>
+<text x="1060" y="346">Kuzyn</text>
+<text x="1120" y="346">Siostra</text>
+<text x="1180" y="346">Brat</text>
+<text x="1240" y="346">Siostra</text>
+<text x="1295" y="346">Ego</text>
+<text x="1350" y="346">Brat</text>
+<text x="1410" y="346">Siostra</text>
+<text x="1470" y="346">Brat</text>
+<text x="1530" y="346">Kuzynka</text>
+<text x="1590" y="346">Kuzyn</text>
+<text x="1650" y="346">Siostra</text>
+<text x="1710" y="346">Brat</text>
+<text x="1770" y="346">Kuzynka</text>
+<text x="1830" y="346">Kuzyn</text>
+<text x="1890" y="346">Kuzynka</text>
+<text x="1950" y="346">Kuzyn</text>
+<text x="2010" y="346">Siostra</text>
+<text x="2070" y="346">Brat</text>
+<text x="2130" y="346">Kuzynka</text>
+<text x="2190" y="346">Kuzyn</text>
+<text x="2250" y="346">Siostra</text>
+<text x="2310" y="346">Brat</text>
+<text x="2370" y="346">Siostra</text>
+<text x="2430" y="346">Brat</text>
+<text x="2490" y="346">Kuzynka</text>
+<text x="2550" y="346">Kuzyn</text>
+</g>
+</g>
+</svg>
