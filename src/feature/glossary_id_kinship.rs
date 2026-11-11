@@ -15,10 +15,10 @@ pub enum KinshipJago {
 	FC,	MC,	PC, // 2.2 (2)
 	FS,	FD,	MS,	MD,  // 2.2 (2)
 
-	// FG,	MG,	PG, // 2.3 (3/2)
-	// BC,	ZC,	GC, // 2.3 (3/2)
-	// FB,	FZ,	MB,	MZ, // 2.3 (3/2)
-	// BS,	BD,	ZS,	ZD, // 2.3 (3/2)
+	FG,	MG,	PG, // 2.3 (3/2)
+	BC,	ZC,	GC, // 2.3 (3/2)
+	FB,	FZ,	MB,	MZ, // 2.3 (3/2)
+	BS,	BD,	ZS,	ZD, // 2.3 (3/2)
 }
 
 macro_rules! pary {
@@ -42,51 +42,52 @@ macro_rules! pary {
 			}
 		}
 	};
-		// czwórka <=> czwórka: (ogół, ogół linii, mężczyzna, kobieta)
+	// grupa <=> grupa: każdy z lewej z każdym z prawej
 	(@zbierz [$($acc:tt)*]
-		($u1:ident $nu1:literal, $l1:ident $nl1:literal, $m1:ident $nm1:literal, $f1:ident $nf1:literal $(,)?) <=>
-		($u2:ident $nu2:literal, $l2:ident $nl2:literal, $m2:ident $nm2:literal, $f2:ident $nf2:literal $(,)?); $($rest:tt)*) => {
-		pary!(@zbierz [$($acc)*
-			($u1 $nu1, $u2 $nu2)
-			($l1 $nl1, $l2 $nl2)
-			($m1 $nm1, $m2 $nm2) ($m1 $nm1, $f2 $nf2)
-			($f1 $nf1, $m2 $nm2) ($f1 $nf1, $f2 $nf2)
-		] $($rest)*);
+		($($a:ident $na:literal),+ $(,)?) <=> ($($b:ident $nb:literal),+ $(,)?); $($rest:tt)*) => {
+		pary!(@krzyz [$($acc)*] [$($a $na),+] [$($b $nb),+] $($rest)*);
 	};
-	// trójka <=> trójka: nijaka ↔ nijaka oraz każda płeć z lewej z każdą z prawej
-	(@zbierz [$($acc:tt)*]
-		($u1:ident $nu1:literal, $m1:ident $nm1:literal, $f1:ident $nf1:literal) <=>
-		($u2:ident $nu2:literal, $m2:ident $nm2:literal, $f2:ident $nf2:literal); $($rest:tt)*) => {
-		pary!(@zbierz [$($acc)*
-			($u1 $nu1, $u2 $nu2)
-			($m1 $nm1, $m2 $nm2) ($m1 $nm1, $f2 $nf2)
-			($f1 $nf1, $m2 $nm2) ($f1 $nf1, $f2 $nf2)
-		] $($rest)*);
+	// sym grupa: każdy z każdym w tej samej grupie, także sam ze sobą, każda para raz
+	(@zbierz [$($acc:tt)*] sym ($($a:ident $na:literal),+ $(,)?); $($rest:tt)*) => {
+		pary!(@sym [$($acc)*] [$($a $na),+] $($rest)*);
 	};
-	// trójka symetryczna: ta sama trójka po obu stronach, bez powtórzeń
-	(@zbierz [$($acc:tt)*]
-		sym ($u:ident $nu:literal, $m:ident $nm:literal, $f:ident $nf:literal); $($rest:tt)*) => {
-		pary!(@zbierz [$($acc)*
-			($u $nu, $u $nu)
-			($m $nm, $m $nm) ($m $nm, $f $nf) ($f $nf, $f $nf)
-		] $($rest)*);
-	};
-	// pojedyncza para, jak dotąd
+	// pojedyncza para
 	(@zbierz [$($acc:tt)*] $a:ident $na:literal <=> $b:ident $nb:literal; $($rest:tt)*) => {
 		pary!(@zbierz [$($acc)* ($a $na, $b $nb)] $($rest)*);
 	};
+	// żaden wzór nie pasuje: czytelny błąd zamiast nieskończonej rekurencji
 	(@zbierz [$($acc:tt)*] $($zly:tt)*) => {
 		compile_error!(concat!("pary!: nieznana postać wiersza: ", stringify!($($zly)*)));
 	};
+
+	// pomocnicze: iloczyn kartezjański lewa × prawa
+	(@krzyz [$($acc:tt)*] [$a:ident $na:literal $(, $at:ident $nat:literal)*] [$($b:ident $nb:literal),+] $($rest:tt)*) => {
+		pary!(@krzyz [$($acc)* $( ($a $na, $b $nb) )+] [$($at $nat),*] [$($b $nb),+] $($rest)*);
+	};
+	(@krzyz [$($acc:tt)*] [] [$($b:ident $nb:literal),+] $($rest:tt)*) => {
+		pary!(@zbierz [$($acc)*] $($rest)*);
+	};
+	// pomocnicze: pary nieuporządkowane w grupie
+	(@sym [$($acc:tt)*] [$a:ident $na:literal $(, $t:ident $nt:literal)*] $($rest:tt)*) => {
+		pary!(@sym [$($acc)* ($a $na, $a $na) $( ($a $na, $t $nt) )*] [$($t $nt),*] $($rest)*);
+	};
+	(@sym [$($acc:tt)*] [] $($rest:tt)*) => {
+		pary!(@zbierz [$($acc)*] $($rest)*);
+	};
+
 	// wejście
 	($($t:tt)*) => { pary!(@zbierz [] $($t)*); };
 }
 
 pary! {
+	// 1.1 (1)
 	(P "rodzic/rodzice", F "ojciec", M "matka") <=> (C "dziecko/dzieci", S "syn", D "córka");
+	// 1.2 (2/1)
 	sym (G "brat/siostra/rodzeństwo", B "brat", Z "siostra");
+	// 1.3 (K)
 	sym (E "małżonek/małżonkowie", H "mąż", W "żona");
 
+	// 2.1 (2)
 	(
 		PP "dziadkowie",
 		FP "dziadkowie ojczyści",
@@ -107,6 +108,28 @@ pary! {
 			DS "wnuk po córce",
 			DD "wnuczka po córce"
 		);
+
+	// 2.2 (2)
+	sym (
+		PC "rodzeństwo przyrodnie",
+		FC "rodzeństwo przyrodnie ojczyste",
+		FS "półbrat ojczysty",
+		FD "półsiostra ojczysta"
+	);
+	sym (
+		PC "rodzeństwo przyrodnie",
+		MC "rodzeństwo przyrodnie macierzyste",
+		MS "półbrat macierzysty",
+		MD "półsiostra macierzysta"
+	);
+	// 2.3 (3/2)
+	(PG "stryjkowie,wujkowie", FG "stryjkowie", MG "wujkowie") <=> (GC "nieciowie");
+	FG "stryjkowie" <=> BC "nieciowie";
+	(FB "stryj") <=> ( BC "synowiec,synowica", BS "synowiec", BD "synowica" );
+	(FZ "ciota") <=> ( BC "brataniec,bratanica", BS "brataniec", BD "bratanica" );
+	MG "wujkowie" <=> ZC "nieciowie";
+	(MB "wuj") <=> ( ZC "siostrzeniec,siostrzenica", ZS "siostrzeniec", ZD "siostrzenica" );
+	(MZ "sioła") <=> ( ZC "córowiec,córowica", ZS "córowiec", ZD "córowica" );
 
 	//E "małżonek/małżonkowie" <=> E "małżonek/małżonkowie";
 	//H "mąż" <=> W "żona";
