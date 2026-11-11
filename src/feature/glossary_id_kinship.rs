@@ -20,17 +20,17 @@ pub enum KinshipJago {
 	FB,	FZ,	MB,	MZ, // 2.3 (3/2)
 	BS,	BD,	ZS,	ZD, // 2.3 (3/2)
 
-	// MH,FW,PE,EC, // 2.4 (P1)
-	// WS,WD,WC,// 2.4 (P1)
-	// HS,HD,HC,// 2.4 (P1)
+	MH,FW,PE,EC, // 2.4 (P1)
+	WS,WD,WC,// 2.4 (P1)
+	HS,HD,HC,// 2.4 (P1)
 
-	// DH,SW,CE,EP, // 2.5 (P1)
-	// WF,WM,WP,// 2.5 (P1)
-	// HF,HM,HP,// 2.5 (P1)
+	DH,SW,CE,EP, // 2.5 (P1)
+	WF,WM,WP,// 2.5 (P1)
+	HF,HM,HP,// 2.5 (P1)
 
-	// ZH,BW,GE,EG, // 2.6 (P2)
-	// WB,WZ,WG,// 2.6 (P2)
-	// HB,HZ,HG,// 2.6 (P2)
+	ZH,BW,GE,EG, // 2.6 (P2)
+	WB,WZ,WG,// 2.6 (P2)
+	HB,HZ,HG,// 2.6 (P2)
 
 
 }
@@ -144,5 +144,59 @@ pary! {
 	MG "wujkowie" <=> ZC "nieciowie";
 	(MB "wuj") <=> ( ZC "siostrzeniec,siostrzenica", ZS "siostrzeniec", ZD "siostrzenica" );
 	(MZ "sioła") <=> ( ZC "córowiec,córowica", ZS "córowiec", ZD "córowica" );
+
+		// 2.4 (P1)
+	(
+		PE "rodzice przybrani",
+		MH "ojczym"
+	) <=> ( EC "dzieci przybrane",
+			WC "pasierb,pasierbica po żonie",
+			WS "pasierb po żonie",
+			WD "pasierbica po żonie"
+		);
+	(
+		PE "rodzice przybrani",
+		FW "macocha"
+	) <=> ( EC "dzieci przybrane",
+			HC "pasierb,pasierbica po mężu",
+			HS "pasierb po mężu",
+			HD "pasierbica po mężu"
+		);
+
+	// 2.5 (P1)
+	(
+		CE "małżonkowie dzieci",
+		DH "zięć"
+	) <=> ( EP "teściowie",
+			WP "teść,teściowa",
+			WF "teść",
+			WM "teściowa"
+		);
+	(
+		CE "małżonkowie dzieci",
+		SW "snecha"
+	) <=> ( EP "teściowie",
+			HP "świekier,świekra",
+			HF "świekier",
+			HM "świekra"
+		);
+
+	// 2.6 (P2)
+	(
+		GE "małżonkowie rodzeństwa",
+		ZH "swak"
+	) <=> ( EG "rodzeństwo małżonka",
+			WG "szurzy,świeść",
+			WB "szurzy",
+			WZ "świeść"
+		);
+	(
+		GE "małżonkowie rodzeństwa",
+		BW "bratowa"
+	) <=> ( EG "rodzeństwo małżonka",
+			HG "dziewierz,zełwa",
+			HB "dziewierz",
+			HZ "zełwa"
+		);
 
 }
