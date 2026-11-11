@@ -92,19 +92,19 @@ A
 	}
 A[href]:link
 	{
-	color: blue;
+	color: rgb(0, 0, 79);
 	}
 A[href]:visited
 	{
-	color: purple;
+	color: rgb(71, 0, 71);
 	}
 A[href]:hover
 	{
-	color: red;
+	color: rgb(99, 0, 0);
 	}
 A[href]:active
 	{
-	color: maroon;
+	color: rgb(72, 0, 0);
 	}
 .ac, .ac P, .ac LI
 	{

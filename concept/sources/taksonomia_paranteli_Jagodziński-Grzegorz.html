@@ -9,20 +9,104 @@
 	<title>Terminy pokrewieństwa i&nbsp;powinowactwa</title>
 	<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
 	<link href="style.css" rel="stylesheet" type="text/css">
-	<link href="style19.css" rel="stylesheet" type="text/css">
-	<base target="_blank">
+	<base target="_self">
+	<style>
+        body {
+            
+        
+			margin: 20;
+			font-family: "Arial Unicode MS", "Linux Libertine", FreeSans, FreeSerif, "Bitstream Cyberbit", "TITUS Cyberbit Basic", Code2000, Code2001, Code2002, "Doulos SIL", "Charis SIL", "Galatia SIL", "Gentium Plus", Gentium, GentiumAlt, Cardo, "Chrysanthi Unicode", "Lucida Sans Unicode", "Lucida Grande", "Bitstream Vera Sans", Andika, "DejaVu Sans", "Microsoft Sans Serif", Arial, Helvetica, Verdana, Calibri, Cambria, Tahoma, "Times New Roman";
+			font-size: 10px;
+			background: #f5e4a1;			
+			color: black;
+			}
+
+        /* Styl dla paska u góry */
+        .top-bar {
+            position: fixed; /* Pasek jest stale na górze ekranu */
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 238, 170, 0.741);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
+        /* Kontener na linki - układa je w rzędzie */
+        .nav-links {
+            display: flex;
+            justify-content: center; /* Środkuje linki na pasku */
+            flex-wrap: wrap;         /* Pozwala na zawijanie linii na małych ekranach */
+            margin: 0;
+            padding: 10px 0;
+            list-style: none;        /* Usuwa kropki z listy */
+        }
+
+        /* Pojedynczy element listy */
+        .nav-links li {
+            margin: 5px 15px;
+        }
+
+        /* Wygląd linków */
+        .nav-links a {
+			background-color: rgba(0, 0, 0, 0.05);
+			padding: 4px; margin: 2px;
+            color: #fff;
+            text-decoration: none;   /* Usuwa podkreślenie */
+            font-weight: bold;
+            font-size: 12px;
+            transition: color 0.3s;  /* Płynne przejście koloru po najechaniu */
+        }
+
+        /* Efekt po najechaniu myszką */
+        .nav-links a:hover {
+            color: #00bcd4;          /* Zmiana koloru na błękitny */
+        }
+
+        /* Margines dla treści, aby pasek jej nie zasłaniał na starcie */
+        .content {
+            margin-top: 80px; 
+            padding: 30px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            background: rgb(251, 245, 220);
+            min-height: 2000px;     /* Sztuczna wysokość do testowania przewijania */
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        /* Odstępy dla sekcji, do których prowadzą linki */
+        .section {
+            padding-top: 40px;      /* Zabezpieczenie przed zasłanianiem nagłówka przez pasek */
+            margin-bottom: 60px;
+        }
+    </style>
 </head>
 <body class="ma8">
-	
+	<nav class="top-bar">
+        <ul class="nav-links">
+            <li><a href="#pokrzehtml">tab1 według pokoleń</a></li>
+            <li><a href="#pokrzezhtml">tab2 według złożoności</a></li>
+            <li><a href="#pokzesshtml">tab3 jęzki</a></li>
+            <li><a href="#pokrihtml">tab4 jęzki++</a></li>
+            <li><a href="#pokzesrhtml">tab5 dwustronne</a></li>
+            <li><a href="#pokzeshtml">wykaz1 alfabet</a></li>
+            <li><a href="#pokzesahtml">wykaz2 symbol</a></li>
+            <li><a href="#pokzeszhtml">wykaz3 symbl? </a></li>
+            <li><a href="#pokzesphtml">wykaz4 złożonność</a></li>
+        </ul>
+    </nav>
+	</div>
+	<div class="content">
 	<hr style="height: 70px; width: 100%; background-color: #161616; border: none; margin: 20px 0;">
 
-	<section>
+	<section id="pokrzehtml">
 		<header>			
 			<h1><span style="background-color: darkgray;">popraw__pokrze.html</span> <span> Terminy pokrewieństwa i&nbsp;powinowactwa </span></h1>
 			<p class="ac uwaga"><b>opracował:</b> Grzegorz Jagodziński; <b>Wersja z</b> 2026-07-04;</p>	
 			<h3>Zestawienia tabelaryczne</h3>			
 			<h4>Pełne zestawienie według pokoleń nazw angielskich, łacińskich i staropolskich</h4>
-<p class="ac uwaga">W pierwszej kolumnie (r) podano oznaczenie numeru relacji, zob. <a href="pokzesr.html">tutaj</a></p>
+<p class="ac uwaga">W pierwszej kolumnie (r) podano oznaczenie numeru relacji, zob. <a href="#pokzesrhtml">tutaj</a></p>
 <p class="ac uwaga">Dalsze objaśnienia podano pod tabelami</p>
 		</header>
 		<article>
@@ -468,7 +552,7 @@
 
 	<hr style="height: 70px; width: 100%; background-color: #161616; border: none; margin: 20px 0;">
 
-	<section>
+	<section id="pokrzezhtml">
 		<header>			
 			<h1><span style="background-color: darkgray;">popraw__pokrzez.html</span> <span> Terminy pokrewieństwa i&nbsp;powinowactwa </span></h1>
 			<p class="ac uwaga"><b>opracował:</b> Grzegorz Jagodziński; <b>Wersja z</b> 2026-07-04;</p>	
@@ -583,7 +667,7 @@
 			<tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td colspan="7"></td><td>&nbsp;</td><td colspan="7"></td><td>&nbsp;</td><td colspan="7"></td><td>&nbsp;</td><td colspan="7"></td></tr>
 			<tr><td>PPGC</td><td>&nbsp;</td><td>&nbsp;</td><td colspan="7">—</td><td>&nbsp;</td><td colspan="7">—</td><td>&nbsp;</td><td>second cousin</td><td>&nbsp;</td><td>kuzyn 2. stopnia</td><td>&nbsp;</td><td>second cousin</td><td>&nbsp;</td><td>kuzynka 2. stopnia</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td style="width: 66px">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
 			</table>
-			<p><a href="pokrze.html">Pełne zestawienie według pokoleń nazw angielskich, łacińskich i staropolskich</a></p>
+			<p><a href="#pokrzehtml">Pełne zestawienie według pokoleń nazw angielskich, łacińskich i staropolskich</a></p>
 			</div>
 			<h4>Skrócone zestawienie niektórych staropolskich relacji według złożoności</h4>
 			<div class="ac">
@@ -657,7 +741,7 @@
 			<tr><td>HD</td><td rowspan="2">pasierbica</td><td>HDS</td><td rowspan="2">wnuk przybrany / syn pasierbicy</td><td>HDD</td><td rowspan="2">wnuczka przybrana / córka pasierbicy</td><td>HDH</td><td rowspan="2">zięć przybrany / mąż pasierbicy</td><td colspan="2" rowspan="2">—</td></tr>
 			<tr><td>WD</td><td>WDS</td><td>WDD</td><td>WDH</td></tr>
 			</table>
-			<p><a href="pokrze.html">Pełne zestawienie według pokoleń nazw angielskich, łacińskich i staropolskich</a></p>
+			<p><a href="#pokrzehtml">Pełne zestawienie według pokoleń nazw angielskich, łacińskich i staropolskich</a></p>
 			</div>
 		</article>
 		<footer>
@@ -701,12 +785,12 @@
 
 	<hr style="height: 70px; width: 100%; background-color: #161616; border: none; margin: 20px 0;">
 
-	<section>
+	<section id="pokzesshtml">
 		<header>			
 			<h1><span style="background-color: darkgray;">popraw__pokzess.html</span> <span> Terminy pokrewieństwa i&nbsp;powinowactwa </span></h1>
 			<p class="ac uwaga"><b>opracował:</b> Grzegorz Jagodziński; <b>Wersja z</b> 2026-07-04;</p>	
 			<h3>Zestawienia tabelaryczne</h3>
-			<p class="uw">W pierwszej kolumnie (r) podano oznaczenie numeru relacji, zob. <a href="pokzesr.html">tutaj</a></p>
+			<p class="uw">W pierwszej kolumnie (r) podano oznaczenie numeru relacji, zob. <a href="#pokzesrhtml">tutaj</a></p>
 		</header>
 		<article>
 			<div class="ac">
@@ -1098,7 +1182,7 @@
 
 	<hr style="height: 70px; width: 100%; background-color: #161616; border: none; margin: 20px 0;">
 
-	<section>
+	<section id="pokrihtml">
 		<header>			
 			<h1><span style="background-color: darkgray;">popraw__pokri.html</span> <span> Terminy pokrewieństwa i&nbsp;powinowactwa </span></h1>
 			<p class="ac uwaga"><b>opracował:</b> Grzegorz Jagodziński; <b>Wersja z</b> 2026-07-04;</p>	
@@ -1580,7 +1664,7 @@
 
 	<hr style="height: 70px; width: 100%; background-color: #161616; border: none; margin: 20px 0;">
 
-	<section>
+	<section id="pokzesrhtml">
 		<header>			
 			<h1><span style="background-color: darkgray;">popraw__pokzesr.html</span> <span> Terminy pokrewieństwa i&nbsp;powinowactwa </span></h1>
 			<p class="ac uwaga"><b>opracował:</b> Grzegorz Jagodziński; <b>Wersja z</b> 2026-07-04;</p>	
@@ -1825,7 +1909,7 @@
 
 	<hr style="height: 70px; width: 100%; background-color: #161616; border: none; margin: 20px 0;">
 
-	<section>
+	<section id="pokzeshtml">
 		<header>			
 			<h1><span style="background-color: darkgray;">popraw__pokzes.html</span> <span> Terminy pokrewieństwa i&nbsp;powinowactwa </span></h1>
 			<p class="ac uwaga"><b>opracował:</b> Grzegorz Jagodziński; <b>Wersja z</b> 2026-07-04;</p>	
@@ -3910,7 +3994,7 @@
 
 	<hr style="height: 70px; width: 100%; background-color: #161616; border: none; margin: 20px 0;">
 
-	<section>
+	<section id="pokzesahtml">
 		<header>			
 			<h1><span style="background-color: darkgray;">popraw__pokzesa.html</span> <span> Terminy pokrewieństwa i&nbsp;powinowactwa </span></h1>
 			<p class="ac uwaga"><b>opracował:</b> Grzegorz Jagodziński; <b>Wersja z</b> 2026-07-04;</p>	
@@ -5995,7 +6079,7 @@
 
 	<hr style="height: 70px; width: 100%; background-color: #161616; border: none; margin: 20px 0;">
 
-	<section>
+	<section id="pokzeszhtml">
 		<header>			
 			<h1><span style="background-color: darkgray;">popraw__pokzesz.html</span> <span> Terminy pokrewieństwa i&nbsp;powinowactwa </span></h1>
 			<p class="ac uwaga"><b>opracował:</b> Grzegorz Jagodziński; <b>Wersja z</b> 2026-07-04;</p>	
@@ -6935,7 +7019,7 @@
 
 	<hr style="height: 70px; width: 100%; background-color: #161616; border: none; margin: 20px 0;">
 
-	<section>
+	<section id="pokzesphtml">
 		<header>			
 			<h1><span style="background-color: darkgray;">popraw__pokzesp.html</span> <span> Terminy pokrewieństwa i&nbsp;powinowactwa </span></h1>
 			<p class="ac uwaga"><b>opracował:</b> Grzegorz Jagodziński; <b>Wersja z</b> 2026-07-04;</p>	
@@ -8043,7 +8127,7 @@
 	</section>
 	
 	<hr style="height: 70px; width: 100%; background-color: #161616; border: none; margin: 20px 0;">
-
+ </div>
 </body>
 
 </html>
