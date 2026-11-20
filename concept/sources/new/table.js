@@ -91,6 +91,107 @@
 	};
 
 	/* ════════════════════════════════════════════════════════════════════
+	   1b. Generator otoczenia ↂn (ten sam układ obiektów co `dane`)
+	   ────────────────────────────────────────────────────────────────────
+	   klasa  = P^a G^b C^c,  b ∈ {0,1},  n = a + b + c
+	   g      = c − a  (każde g od −n do +n daje dokładnie jedną klasę)
+	   sp     = a + 2b + c,  spg = n
+	   rp     = w (same P) / z (same C) / b (pozostałe)
+	   CISO   r = a − c:
+				r ≥ 0 → A = +ścieżka(ego, bity[0..r)),  B = 1‖bity[r..n)
+				r < 0 → A = −ścieżka(ego, bity[k..n)),  B = 1‖bity[0..k),  k = 2a + b
+	   ogniwo = same P → A>>1;  koniec na G → para rodziców;  inaczej CISO prefiksu
+	   Odtwarza ↂ1–ↂ3 z tab01.js bez różnic (poza r = odsyłaczem, nazwami i kolejnością w ᛝPPP, ᛝGCC).
+	   ════════════════════════════════════════════════════════════════════ */
+
+	const MINUS = "−";
+	const LITERY = { P: ["F", "M"], G: ["B", "Z"], C: ["S", "D"] };
+	const PLEC = ["♂️", "♀️"]; // ♂️ ♀️
+
+	const sciezka = (ego, bity) => bity.reduce((x, b) => 2 * x + b, ego);
+
+	// słowo klasy (np. "PPGC") + bity płci → [A, B | null]
+	const ciso = (slowo, bity, ego) => {
+		if (!slowo) return [ego, null];
+		const ile = (l) => [...slowo].filter((x) => x === l).length;
+		const a = ile("P"), b = ile("G"), c = ile("C");
+		if (b === 0 && c === 0) return [sciezka(ego, bity), null];
+		if (a === 0 && b === 0) return [-sciezka(ego, bity), null];
+		const r = a - c;
+		if (r >= 0) return [sciezka(ego, bity.slice(0, r)), parseInt("1" + bity.slice(r).join(""), 2)];
+		const k = 2 * a + b;
+		return [-sciezka(ego, bity.slice(k)), parseInt("1" + bity.slice(0, k).join(""), 2)];
+	};
+
+	const znak = (A) => (A < 0 ? MINUS : "+");
+	const ulamek = (B) => {
+		const L = Math.floor(Math.log2(B));
+		return [String(2 * (B - 2 ** L) + 1), String(2 ** (L + 1))];
+	};
+	const zapisDec = ([A, B], gwiazdka) => [
+		...(gwiazdka ? ["✾"] : []), znak(A), String(Math.abs(A)), ...(B === null ? [] : [ulamek(B)]),
+	];
+	const zapisBin = ([A, B]) => {
+		const s = Math.abs(A).toString(2);
+		const reszta = s.slice(2) + (B === null ? "" : "." + B.toString(2).slice(1) + "1");
+		return reszta ? [znak(A), s.slice(0, 2), reszta] : [znak(A), s.slice(0, 2)];
+	};
+
+	// poprzednie ogniwo sosa
+	const ogniwo = (slowo, bity, ego) => {
+		if (!/[GC]/.test(slowo)) return ["+", String(sciezka(ego, bity) >> 1)];
+		if (slowo.endsWith("G")) {
+			const p = sciezka(ego, bity.slice(0, -1));
+			return ["+", `${2 * p}&${2 * p + 1}`];
+		}
+		return zapisDec(ciso(slowo.slice(0, -1), bity.slice(0, -1), ego), false);
+	};
+
+	// klasy otoczenia n w kolejności g = −n … +n
+	const klasyOtoczenia = (n) =>
+		Array.from({ length: 2 * n + 1 }, (_, i) => {
+			const g = i - n;
+			const b = (n + g) % 2 === 0 ? 0 : 1;
+			const a = (n - b - g) / 2, c = (n - b + g) / 2;
+			return { a, b, c, g, slowo: "P".repeat(a) + "G".repeat(b) + "C".repeat(c) };
+		});
+
+	// kolejność relacji w klasie: gdy a > c — KNOT czytany od krewnego ku ego, inaczej od ego
+	const wzorcePlci = (n, odKonca) => {
+		const klucz = (bity) => sciezka(0, odKonca ? [...bity].reverse() : bity);
+		return Array.from({ length: 2 ** n }, (_, i) => [...i.toString(2).padStart(n, "0")].map(Number))
+			.sort((x, y) => klucz(x) - klucz(y));
+	};
+
+	const generujOtoczenie = (n) => ({
+		dystans: `ↂ${n}`,
+		grupy: klasyOtoczenia(n).map(({ a, b, c, g, slowo }) => ({
+			r: " ", // odsyłacz do dokumentacji — dla otoczeń generowanych brak
+			pokolenie: `䷀${Math.abs(g)}<sub>${g < 0 ? "+" : g > 0 ? MINUS : "="}</sub>`,
+			otoczenie: `ↂ${n}`,
+			symbol: "ᛝ" + slowo,
+			rp: b === 0 && c === 0 ? "w" : a === 0 && b === 0 ? "z" : "b",
+			sp: String(a + 2 * b + c),
+			spg: String(n),
+			relacje: wzorcePlci(n, a > c).map((bity) => {
+				const sosa = (ego) => {
+					const v = ciso(slowo, bity, ego);
+					return { dec: [zapisDec(v, true)], bin: [zapisBin(v)] };
+				};
+				return {
+					sex: PLEC[bity[n - 1]],
+					knot: "ᛟ" + bity.map((x, i) => LITERY[slowo[i]][x]).join(""),
+					sosa: { ego2: sosa(2), ego3: sosa(3) },
+					sosa_rel: { ego2: { dec: [ogniwo(slowo, bity, 2)] }, ego3: { dec: [ogniwo(slowo, bity, 3)] } },
+					en: " ",
+					la: " ",
+					pl: " ",
+				};
+			}),
+		})),
+	});
+
+	/* ════════════════════════════════════════════════════════════════════
 	   2. Definicje kolumn
 	   ────────────────────────────────────────────────────────────────────
 	   rodzaj "G" – komórka grupy: tylko w 1. wierszu grupy, rowspan = wiersze grupy
@@ -146,6 +247,28 @@
 
 	let kolejnosc = wczytaj();
 
+	// otoczenia generowane skryptem (ptaszki w ustawieniach)
+	const OTOCZENIA_GEN = [4, 5];
+	const KLUCZ_OT = "tab01.otoczenia";
+	const wczytajOtoczenia = () => {
+		try {
+			const v = JSON.parse(localStorage.getItem(KLUCZ_OT));
+			if (Array.isArray(v)) return OTOCZENIA_GEN.filter((n) => v.includes(n));
+		} catch (_) { /* brak dostępu do localStorage */ }
+		return [];
+	};
+	let otoczenia = wczytajOtoczenia();
+
+	const wygenerowane = new Map();
+	const jestWDanych = (n) => dane.some((s) => s.dystans === `ↂ${n}`);
+	const daneTabeli = () => [
+		...dane,
+		...otoczenia.filter((n) => !jestWDanych(n)).map((n) => {
+			if (!wygenerowane.has(n)) wygenerowane.set(n, generujOtoczenie(n));
+			return wygenerowane.get(n);
+		}),
+	];
+
 	/* ════════════════════════════════════════════════════════════════════
 	   3. Rysowanie tabeli
 	   ════════════════════════════════════════════════════════════════════ */
@@ -177,7 +300,7 @@
 		tabela.querySelectorAll(":scope > tbody").forEach((tb) => tb.remove());
 		let lp = 0;
 
-		dane.forEach((sekcja) => {
+		daneTabeli().forEach((sekcja) => {
 			let html = `<tr><td class="lp"></td><td class="ac dystans-naglowek" x="RING" colspan="${uklad.length}">${sekcja.dystans}</td></tr>`;
 
 			sekcja.grupy.forEach((grupa) => {
@@ -227,11 +350,15 @@
 	const panel = document.createElement("details");
 	panel.className = "konfig-kolumn";
 	panel.innerHTML =
-		`<summary>⚙️ Kolejność kolumn</summary>` +
+		`<summary>⚙️ Ustawienia</summary>` +
 		`<div class="kk-lista"></div>` +
 		`<div class="kk-stopka">` +
 		`<button type="button" class="kk-reset">Przywróć domyślną</button>` +
 		`<span>Przeciągnij kafelek albo nagłówek kolumny w tabeli, lub użyj ◀ ▶.</span>` +
+		`</div>` +
+		`<div class="kk-stopka kk-otoczenia">` +
+		`<b>Generuj otoczenia:</b>` +
+		OTOCZENIA_GEN.map((n) => `<label><input type="checkbox" data-otoczenie="${n}"> ↂ${n}</label>`).join("") +
 		`</div>`;
 	pudlo.before(panel);
 	const lista = panel.querySelector(".kk-lista");
@@ -292,6 +419,15 @@
 		if (btn) przesun(btn.closest("[data-blok]").dataset.blok, Number(btn.dataset.ruch));
 	});
 	panel.querySelector(".kk-reset").addEventListener("click", () => ustaw([...DOMYSLNA]));
+
+	panel.querySelectorAll("input[data-otoczenie]").forEach((pole) => {
+		pole.checked = otoczenia.includes(Number(pole.dataset.otoczenie));
+		pole.addEventListener("change", () => {
+			otoczenia = OTOCZENIA_GEN.filter((n) => panel.querySelector(`input[data-otoczenie="${n}"]`).checked);
+			try { localStorage.setItem(KLUCZ_OT, JSON.stringify(otoczenia)); } catch (_) { /* j.w. */ }
+			rysuj();
+		});
+	});
 
 	// ── przeciąganie (wspólne dla kafelków i nagłówków) ──
 	let ciagniety = null;
