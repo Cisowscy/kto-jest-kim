@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		* {
+			box-sizing: border-box;
+		}
+
+		html, body {
+			margin: 0;
+			padding: 0;
+			width: 100%;
+			max-width: 100%;
+			overflow-x: clip;
+		}
+
+		main {
+			padding-top: calc(var(--top-bar-height) + 10px);
+            margin-left: 20px;
+            margin-right: 20px;
+            min-height: 2000px;     /* Sztuczna wysokość do testowania przewijania */
+			display: flex;
+			flex-flow: column nowrap;
+			gap: 100px;
+		}
+		
+		section {
+			background: #fbf5dc;
+			box-shadow: 0 0 15px rgba(0,0,0,0.15);
+			padding: 25px;
+			border-radius: 25px;
+		}
+
+
+
+        /* Styl dla paska u góry */
+        .top-bar {
+            position: fixed; /* Pasek jest stale na górze ekranu */
+            top: 0;
+            left: 0;
+            width: 100vw;
+			max-width: 100%;
+            background-color: rgba(255, 238, 170, 0.741);
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            z-index: 1000;
+        }
+
+        /* Kontener na linki - układa je w rzędzie */
+        .nav-links {
+            display: flex;
+            justify-content: center; /* Środkuje linki na pasku */
+            flex-wrap: wrap;         /* Pozwala na zawijanie linii na małych ekranach */
+            margin: 0;
+			gap: 10px;
+            padding: 10px 0;
+            list-style: none;        /* Usuwa kropki z listy */
+        }
+
+        
+
+        /* Wygląd linków */
+        .nav-links a {
+			background-color: rgba(0, 0, 0, 0.05);
+			padding: 4px; margin: 2px;
+            color: rgba(0, 0, 0, 0.2);
+            text-decoration: none;   /* Usuwa podkreślenie */
+            font-weight: bold;
+            font-size: 12px;
+            transition: color 0.3s;  /* Płynne przejście koloru po najechaniu */
+        }
+
+        /* Efekt po najechaniu myszką */
+        .nav-links a:hover {
+            color: #00bcd4;          /* Zmiana koloru na błękitny */
+        }
+
+
+        /* Odstępy dla sekcji, do których prowadzą linki */
+        .section {
+            padding-top: 40px;      /* Zabezpieczenie przed zasłanianiem nagłówka przez pasek */
+            margin-bottom: 60px;
+        }
+	</style>
+</head>
+<body>
+	<nav class="top-bar">
+        <ul class="nav-links">
+            <li><a href="#pokrzehtml">tab1 według pokoleń</a></li>
+            <li><a href="#pokrzezhtml">tab2 według złożoności</a></li>
+            <li><a href="#pokzesshtml">tab3 jęzki</a></li>
+            <li><a href="#pokrihtml">tab4 jęzki++</a></li>
+            <li><a href="#pokzesrhtml">tab5 dwustronne</a></li>
+            <li><a href="#pokzeshtml">wykaz1 alfabet</a></li>
+            <li><a href="#pokzesahtml">wykaz2 symbol</a></li>
+            <li><a href="#pokzeszhtml">wykaz3 symbl? </a></li>
+            <li><a href="#pokzesphtml">wykaz4 złożonność</a></li>
+        </ul>
+    </nav>
+	<main>
+	<section>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+	</section>
+	
+	<section>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+		x
+		<br>
+	</section>
+	</main>
+	<script>
+		const topBar = document.querySelector('.top-bar');
+
+		const observer = new ResizeObserver(() => {
+			document.documentElement.style.setProperty(
+				'--top-bar-height',
+				`${topBar.offsetHeight}px`
+			);
+		});
+
+		observer.observe(topBar);
+	</script>
+</body>
+</html>

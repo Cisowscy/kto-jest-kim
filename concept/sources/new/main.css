@@ -1,0 +1,145 @@
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+  font-family:
+    Verdana, "Arial Unicode MS", FreeSans, "Lucida Sans Unicode",
+    "Lucida Grande", "Bitstream Vera Sans", Andika, "DejaVu Sans",
+    "Microsoft Sans Serif", Arial, Helvetica, Calibri, Tahoma, sans-serif;
+  font-size: 12px;
+  color: black;
+}
+
+main {
+  padding-top: calc(var(--top-bar-height) + 10px);
+  margin-left: 20px;
+  margin-right: 20px;
+  min-height: 2000px; /* Sztuczna wysokość do testowania przewijania */
+  display: flex;
+  flex-flow: column nowrap;
+  gap: 200px;
+}
+
+section {
+  background: #fbf5dc;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.15);
+  padding: 25px;
+  border-radius: 25px;
+}
+hr {
+  border: none;
+  height: 25px;
+  background-color: #feefb7;
+}
+h1,
+h2,
+h3,
+h4 {
+  text-align: center;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family:
+    "Arial Narrow", Arial, "Arial Unicode MS", FreeSans, "Lucida Sans Unicode",
+    "Lucida Grande", "Bitstream Vera Sans", Andika, "DejaVu Sans",
+    "Microsoft Sans Serif", Helvetica, Verdana, Calibri, Tahoma, sans-serif;
+  font-stretch: condensed;
+}
+h1 {
+  font-size: 34px;
+  border: solid;
+}
+h2 {
+  font-size: 31px;
+}
+h3 {
+  font-size: 28px;
+}
+h4 {
+  font-size: 25px;
+}
+h5 {
+  font-size: 22px;
+}
+h6 {
+  font-size: 19px;
+}
+
+ol,
+ul {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+li {
+  margin-top: 5px;
+  margin-bottom: 5px;
+  text-align: justify;
+}
+blockquote {
+  border-top: double;
+  border-bottom: double;
+  border-left: double;
+  border-right: double;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 3px;
+}
+
+/* Styl dla paska u góry */
+.top-bar {
+  position: fixed; /* Pasek jest stale na górze ekranu */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  max-width: 100%;
+  background-color: rgba(255, 238, 170, 0.81);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+}
+
+/* Kontener na linki - układa je w rzędzie */
+.nav-links {
+  display: flex;
+  justify-content: center; /* Środkuje linki na pasku */
+  flex-wrap: wrap; /* Pozwala na zawijanie linii na małych ekranach */
+  margin: 0;
+  gap: 10px;
+  padding: 10px 0;
+  list-style: none; /* Usuwa kropki z listy */
+}
+
+/* Wygląd linków */
+.nav-links a {
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 4px;
+  margin: 2px;
+  color: rgba(0, 0, 0, 0.2);
+  text-decoration: none; /* Usuwa podkreślenie */
+  font-weight: bold;
+  font-size: 12px;
+  transition: color 0.3s; /* Płynne przejście koloru po najechaniu */
+}
+
+/* Efekt po najechaniu myszką */
+.nav-links a:hover {
+  color: #00bcd4; /* Zmiana koloru na błękitny */
+}
+
+/* Odstępy dla sekcji, do których prowadzą linki */
+.section {
+  padding-top: 40px; /* Zabezpieczenie przed zasłanianiem nagłówka przez pasek */
+  margin-bottom: 60px;
+}

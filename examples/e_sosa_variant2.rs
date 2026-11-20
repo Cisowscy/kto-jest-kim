@@ -8,11 +8,20 @@ use kim::feature::{
 
 // ======example usage =====
 fn main() {
-	let kolumny = wybrane(&domyslne());
+	let kolumny = wybrane(&vec![
+		//"sosa.ego.gender.get_char",
+		//"sosa.ego.gennum.dec.0.get_text",
+		"sosa.ego.normal.dec.get_text",
+		"lines.dad.get_code",
+		"lines.mom.get_code",
+		//"sosa.dad.normal.dec.get_text",
+		//"sosa.mom.normal.dec.get_text",
+		//"sosa.kid.normal.dec.get_text",
+	]);
 	let mut table = new_table(&kolumny);
-	add_rows(&mut table, &kolumny, PersonEntryFrom::Range(23..=26));
-	add_rows(&mut table, &kolumny, PersonEntryFrom::Array(&[1, 4, 7, 0]));
-	add_rows(&mut table, &kolumny, PersonEntryFrom::Given(44));
+	add_rows(&mut table, &kolumny, PersonEntryFrom::Range(1..=31));
+	//add_rows(&mut table, &kolumny, PersonEntryFrom::Array(&[1, 4, 7, 0]));
+	//add_rows(&mut table, &kolumny, PersonEntryFrom::Given(44));
 
 	println!("{table}");
 }
