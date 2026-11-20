@@ -6,7 +6,7 @@ const dane = [
 		grupy: [
 			{
 				r: " ",
-				pokolenie: "🔀<br/>䷀0<sub>=</sub><br/>(=0)",
+				pokolenie: "䷀0<sub>=</sub>",
 				otoczenie: "ↂ0",
 				symbol: "ᛝ",
 				rp: " ",
@@ -40,7 +40,7 @@ const dane = [
 		grupy: [
 			{
 				r: "1.1",
-				pokolenie: "⤵️<br/>䷀1<sub>+</sub><br/>(−1)",
+				pokolenie: "䷀1<sub>+</sub>",
 				otoczenie: "ↂ1",
 				symbol: "ᛝP",
 				rp: "w",
@@ -81,7 +81,7 @@ const dane = [
 			},
 			{
 				r: "1.2",
-				pokolenie: "🔀<br/>䷀0<sub>=</sub><br/>(=0)",
+				pokolenie: "䷀0<sub>=</sub>",
 				otoczenie: "ↂ1",
 				symbol: "ᛝG",
 				rp: "b",
@@ -134,7 +134,7 @@ const dane = [
 			},
 			{
 				r: "1.1",
-				pokolenie: "⤴️<br/>䷀1<sub>−</sub><br/>(+1)",
+				pokolenie: "䷀1<sub>−</sub>",
 				otoczenie: "ↂ1",
 				symbol: "ᛝC",
 				rp: "z",
@@ -180,7 +180,7 @@ const dane = [
 		grupy: [
 			{
 				r: "2.1",
-				pokolenie: "⤵️<br/>䷀2<sub>+</sub><br/>(−2)",
+				pokolenie: "䷀2<sub>+</sub>",
 				otoczenie: "ↂ2",
 				symbol: "ᛝPP",
 				rp: "w",
@@ -252,7 +252,7 @@ const dane = [
 
 			{
 				r: "2.3",
-				pokolenie: "⤵️<br/>䷀1<sub>+</sub><br/>(−1)",
+				pokolenie: "䷀1<sub>+</sub>",
 				otoczenie: "ↂ2",
 				symbol: "ᛝPG",
 				rp: "b",
@@ -347,7 +347,7 @@ const dane = [
 			},
 			{
 				r: "2.2",
-				pokolenie: "🔀<br/>䷀0<sub>=</sub><br/>(=0)",
+				pokolenie: "䷀0<sub>=</sub>",
 				otoczenie: "ↂ2",
 				symbol: "ᛝPC",
 				rp: "b",
@@ -443,7 +443,7 @@ const dane = [
 
 			{
 				r: "2.3",
-				pokolenie: "⤴️<br/>䷀1<sub>−</sub><br/>(+1)",
+				pokolenie: "䷀1<sub>−</sub>",
 				otoczenie: "ↂ2",
 				symbol: "ᛝGC",
 				rp: "b",
@@ -544,7 +544,7 @@ const dane = [
 			},
 			{
 				r: "2.1",
-				pokolenie: "⤴️<br/>䷀2<sub>−</sub><br/>(+2)",
+				pokolenie: "䷀2<sub>−</sub>",
 				otoczenie: "ↂ2",
 				symbol: "ᛝCC",
 				rp: "z",
@@ -621,7 +621,7 @@ const dane = [
 		grupy: [
 			{
 				r: "3.1",
-				pokolenie: "⤵️<br/>䷀3<sub>+</sub><br/>(−3)",
+				pokolenie: "䷀3<sub>+</sub>",
 				otoczenie: "ↂ3",
 				symbol: "ᛝPPP",
 				rp: "w",
@@ -753,7 +753,7 @@ const dane = [
 
 			{
 				r: "3.3",
-				pokolenie: "⤵️<br/>䷀2<sub>+</sub><br/>(−2)",
+				pokolenie: "䷀2<sub>+</sub>",
 				otoczenie: "ↂ3",
 				symbol: "ᛝPPG",
 				rp: "b",
@@ -935,7 +935,7 @@ const dane = [
 			},
 			{
 				r: "3.2",
-				pokolenie: "⤵️<br/>䷀1<sub>+</sub><br/>(−1)",
+				pokolenie: "䷀1<sub>+</sub>",
 				otoczenie: "ↂ3",
 				symbol: "ᛝPPC",
 				rp: "b",
@@ -1115,7 +1115,7 @@ const dane = [
 			},
 			{
 				r: "3.6",
-				pokolenie: "🔀<br/>䷀0<sub>=</sub><br/>(=0)",
+				pokolenie: "䷀0<sub>=</sub>",
 				otoczenie: "ↂ3",
 				symbol: "ᛝPGC",
 				rp: "b",
@@ -1298,7 +1298,7 @@ const dane = [
 
 			{
 				r: "3.2",
-				pokolenie: "⤴️<br/>䷀1<sub>−</sub><br/>(+1)",
+				pokolenie: "䷀1<sub>−</sub>",
 				otoczenie: "ↂ3",
 				symbol: "ᛝPCC",
 				rp: "b",
@@ -1480,7 +1480,7 @@ const dane = [
 
 			{
 				r: "3.3",
-				pokolenie: "⤴️<br/>䷀2<sub>−</sub><br/>(+2)",
+				pokolenie: "䷀2<sub>−</sub>",
 				otoczenie: "ↂ3",
 				symbol: "ᛝGCC",
 				rp: "b",
@@ -1688,7 +1688,7 @@ const dane = [
 
 			{
 				r: "3.1",
-				pokolenie: "⤴️<br/>䷀3<sub>−</sub><br/>(+3)",
+				pokolenie: "䷀3<sub>−</sub>",
 				otoczenie: "ↂ3",
 				symbol: "ᛝCCC",
 				rp: "z",

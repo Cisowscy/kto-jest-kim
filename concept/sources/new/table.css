@@ -1,5 +1,9 @@
 .table-box {
   overflow-x: scroll;
+  overflow-y: auto;
+  /* ograniczona wysokość = własne przewijanie w pionie; bez niej nagłówki nie mogą się „przykleić” */
+  max-height: calc(100vh - 40px);
+  max-height: calc(100dvh - 40px);
   box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.15);
   padding: 4px;
   margin-bottom: 20px;
@@ -46,6 +50,12 @@
     color: oklch(43% 0.155 302);
     background-color: oklch(83% 0.155 302);
     font-weight: 700;
+	hr {
+		border: none;
+		height: 4px;
+		width: 70%;
+		background-color: oklch(42.877% 0.15583 301.439 / 0.478);
+		}
   }
   td[x="KNOT_HEAP"] {
     color: oklch(43% 0.155 292);
@@ -164,4 +174,99 @@
   height: 2px;
   background-color: #00000085;
 }
+}
+
+
+/* ═══════════ przyklejone nagłówki kolumn i numery lp ═══════════ */
+
+.table-box thead th {
+  position: sticky;
+  top: -4px; /* = −padding .table-box, żeby nic nie prześwitywało nad nagłówkiem */
+  z-index: 3;
+  background-color: #feefb7;
+  /* przy border-collapse obramowania nie jadą z komórką sticky – outline je zastępuje */
+  outline: 1px solid #ffffff;
+  outline-offset: -0.5px;
+  white-space: nowrap;
+  cursor: grab;
+  user-select: none;
+}
+
+.table-box td.lp,
+.table-box th.lp {
+  position: sticky;
+  left: -4px; /* = −padding .table-box */
+  z-index: 2;
+  background-color: #feefb7;
+  /* przy border-collapse obramowania nie jadą z komórką sticky – outline je zastępuje */
+  outline: 1px solid #ffffff;
+  outline-offset: -0.5px;
+  text-align: right;
+  font-weight: 700;
+}
+
+.table-box th.lp {
+  z-index: 4;
+  cursor: default;
+}
+
+/* znaczniki przeciągania (nagłówki i kafelki) */
+.kk-ciagniety {
+  opacity: 0.45;
+}
+.kk-przed {
+  box-shadow: inset 3px 0 0 #d33 !important;
+}
+.kk-po {
+  box-shadow: inset -3px 0 0 #d33 !important;
+}
+
+/* ═══════════ konfigurator kolejności kolumn ═══════════ */
+
+.konfig-kolumn {
+  margin-bottom: 8px;
+  padding: 6px 10px;
+  background-color: #feefb7;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.12);
+}
+.konfig-kolumn summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+.kk-lista {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 8px 0;
+}
+.kk-kafel {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 4px;
+  background-color: #fbf5dc;
+  border: 1px solid rgba(0, 0, 0, 0.25);
+  border-radius: 6px;
+  cursor: grab;
+  user-select: none;
+}
+.kk-nazwa {
+  padding: 0 4px;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.kk-kafel button,
+.kk-reset {
+  font: inherit;
+  cursor: pointer;
+}
+.kk-kafel button:disabled {
+  cursor: default;
+}
+.kk-stopka {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
 }
