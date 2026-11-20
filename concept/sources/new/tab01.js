@@ -102,8 +102,8 @@ const dane = [
 							},
 						},
 						sosa_rel: {
-							ego2: { dec: [["+", "2"]] },
-							ego3: { dec: [["+", "3"]] },
+							ego2: { dec: [["+", "4&5"]] },
+							ego3: { dec: [["+", "6&7"]] },
 						},
 						en: "brother",
 						la: "frāter",
@@ -123,8 +123,8 @@ const dane = [
 							},
 						},
 						sosa_rel: {
-							ego2: { dec: [["+", "2"]] },
-							ego3: { dec: [["+", "3"]] },
+							ego2: { dec: [["+", "4&5"]] },
+							ego3: { dec: [["+", "6&7"]] },
 						},
 						en: "sister",
 						la: "soror",
@@ -720,7 +720,7 @@ const dane = [
 					},
 					{
 						sex: "♀️",
-						knot: "MFM",
+						knot: "ᛟMFM",
 						sosa: {
 							ego2: { dec: [["✾", "+", "21"]], bin: [["+", "10", "101"]] },
 							ego3: { dec: [["✾", "+", "29"]], bin: [["+", "11", "101"]] },
@@ -1508,7 +1508,7 @@ const dane = [
 						la: " ",
 						pl: {
 							ego2: "wnuk stryjeczny <br/> (wnuk brata, syn bratanka)",
-							ego3: "wnuk siołeczny <br/> (wnuk brata, syn bratanka)"
+							ego3: "wnuk cioteczny <br/> (wnuk brata, syn bratanka)"
 						},
 					},
 					{
@@ -1579,7 +1579,7 @@ const dane = [
 						en: "great niece",
 						la: " ",
 						pl: {
-							ego2: "wnuczka wujeczna <br/> (wnuczka siostry, córka siostrzeńc)",
+							ego2: "wnuczka wujeczna <br/> (wnuczka siostry, córka siostrzeńca)",
 							ego3: "wnuczka siołeczna <br/> (wnuczka siostry, córka siostrzeńca)"
 						},
 					},
